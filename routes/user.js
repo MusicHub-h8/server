@@ -4,7 +4,7 @@ const router = express.Router()
 
 
 router.post('/login', (req, res) => {
-    res.send('masuk', req.headers.access_token)
+    res.send('masuk', req.headers.spotify_token)
 })
 
 // cari di db ada gak yang emailnya udah sama 

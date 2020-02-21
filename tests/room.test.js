@@ -22,17 +22,17 @@ beforeAll(async () => {
   const { _id: toInvite } = await User.findOne({ email: "johndoe@gmail.com" });
   idToInvite = toInvite;
 
-  const { _id: unauthorizedId } = await User.create({
-    email: "bobby@gmail.com",
-    display_name: "bobby",
-    avatar: "www.google.com",
-    genre: "Rock",
-    instruments: ["Drums"]
-  });
-  unauthorizedAccessToken = jwt.sign(
-    { _id: unauthorizedId },
-    process.env.SECRET
-  );
+  // const { _id: unauthorizedId } = await User.create({
+  //   email: "bobby@gmail.com",
+  //   display_name: "bobby",
+  //   avatar: "www.google.com",
+  //   genre: "Rock",
+  //   instruments: ["Drums"]
+  // });
+  // unauthorizedAccessToken = jwt.sign(
+  //   { _id: unauthorizedId },
+  //   process.env.SECRET
+  // );
 });
 
 describe("Room Operations", () => {
@@ -117,8 +117,8 @@ describe("Error Handling", () => {
 
   test("Editing, deleting or removing without privilege will return proper error message and status code 400", async done => {
     const res = await request
-      .patch(`/rooms/${createdRoomId}/remove/${idToInvite}`)
-      .set("access_token", unauthorizedAccessToken);
+      .patch(`/rooms/5e4f7702f710bd1dcc2eed62/remove/${idToInvite}`)
+      .set("access_token", access_token);
     expect(res.statusCode).toEqual(401);
     expect(res.body.message).toEqual(
       "You are not authorized to do this action"

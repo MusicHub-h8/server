@@ -2,7 +2,7 @@ const supertest = require("supertest");
 const app = require("../app");
 const request = supertest(app);
 const axios = require("axios");
-const { User } = require("../models/");
+const { User } = require("../models");
 jest.mock("axios");
 
 let access_token = null;
@@ -50,7 +50,7 @@ describe("User Operations", () => {
     const res = await request.get("/users/recommendations").set({
       access_token
     });
-    expect(res.body).toBe.an("array");
+    expect(Array.isArray(res.body)).toBe(true);
     done();
   });
 });

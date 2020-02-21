@@ -52,23 +52,21 @@ class UserController {
       });
   }
 
-  static getRecommendedUser(req, res, next){
-    User.findOne({ _id : req.currentUserId})
-        .then(user => {
-          return User.find({ genre: user.genre})
-        })
-        .then(recommendations => {
-          let result = recommendations.filter( recommendation => {
-            return recommendation._id.toString() !== req.currentUserId.toString()
-          })
-          res.status(200).json(result)
-        })
-        .catch(err => {
-          next(err)
-        })
+  static getRecommendedUser(req, res, next) {
+    User.findOne({ _id: req.currentUserId })
+      .then(user => {
+        return User.find({ genre: user.genre });
+      })
+      .then(recommendations => {
+        let result = recommendations.filter(recommendation => {
+          return recommendation._id.toString() !== req.currentUserId.toString();
+        });
+        res.status(200).json(result);
+      })
+      .catch(err => {
+        next(err);
+      });
   }
 }
-
-
 
 module.exports = UserController;

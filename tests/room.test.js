@@ -2,16 +2,15 @@ require("dotenv").config();
 const supertest = require("supertest");
 const app = require("../app");
 const request = supertest(app);
+const { User, Room } = require("../models/");
+const jwt = require("jsonwebtoken");
+
 let access_token = null;
-const axios = require("axios");
+let createdRoomId = null;
 
 beforeAll(async () => {
-  access_token = await axios({
-    method: "POST",
-    headers: {
-      spotify_token: process.env.SPOTIFY_TOKEN
-    }
-  }).data.access_token;
+  const { _id } = await User.findOne({ email: "johndoe@gmail.com" });
+  access_token = jwt.sign({ _id }, process.env.SECRET);
 });
 
 describe("Room Operations", () => {
@@ -29,8 +28,25 @@ describe("Room Operations", () => {
     expect(res.body).toHaveProperty("isOpen");
     expect(res.body).toHaveProperty("userIds");
     expect(res.body).toHaveProperty("roomOwner");
+    createdRoomId = res.body._id;
     done();
   });
 
   // ==========================================================================================================
+
+  // ==========================================================================================================
+  test("Should return status 200 on deleting a room, with success message", async done => {
+    const res = await request
+      .delete("/rooms/" + createdRoomId)
+      .set("access_token", access_token);
+    expect(res.statusCode).toEqual(200);
+    expect(res.body.message).toEqual("Delete Successful");
+    done();
+  });
 });
+
+// afterAll(() => {
+//   Room.findOneAndDelete({ music_title: "Hysteria" })
+//     .then()
+//     .catch(console.log);
+// });

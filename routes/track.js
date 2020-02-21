@@ -8,12 +8,11 @@ const {
 } = require("../middlewares/index");
 
 router.use(authentication);
-
 router.post(
   "/:roomId",
   tracks.multer.single("track"),
   tracks.sendUploadToGCS,
   TrackController.upload
 );
-router.delete("/:id", TrackController.delete);
+router.delete("/:id", trackAuthorization, TrackController.delete);
 module.exports = router;

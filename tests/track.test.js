@@ -7,6 +7,7 @@ const { User, Track, Room } = require("../models");
 
 let access_token = null;
 let createdRoomId = null;
+let createdTrackId = null;
 
 beforeAll(async () => {
   const { _id } = await User.findOne({ email: "johndoe@gmail.com" });
@@ -29,6 +30,7 @@ describe("Track Operations", () => {
         .field("instrument", "Bass")
         .attach("track", "./tests/1901_bass.mp3")
         .set("access_token", access_token);
+      createdTrackId = res.body._id;
       expect(res.statusCode).toEqual(201);
       expect(res.body).toHaveProperty("instrument");
       expect(res.body).toHaveProperty("userId");
@@ -38,6 +40,15 @@ describe("Track Operations", () => {
     } catch (err) {
       console.log(err);
     }
+  });
+  // =====================================================================================================
+  test("Should return status 200 on deleting a track, with success message", async done => {
+    const res = await request
+      .delete("/tracks/" + createdTrackId)
+      .set("access_token", access_token);
+    expect(res.statusCode).toEqual(200);
+    expect(res.body.message).toEqual("Delete Successful");
+    done();
   });
 });
 

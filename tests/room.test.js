@@ -58,8 +58,10 @@ describe("Room Operations", () => {
     const res = await request
       .patch(`/rooms/${createdRoomId}/invite/${idToInvite}`)
       .set("access_token", access_token);
+    console.log(res.body);
     expect(res.statusCode).toEqual(200);
-    expect(res.body.userIds.length).not.toEqual(1);
+    expect(res.body.userIds.length).not.toEqual(0);
+    done();
   });
 
   // ==========================================================================================================
@@ -73,8 +75,8 @@ describe("Room Operations", () => {
   });
 });
 
-// afterAll(() => {
-//   Room.findOneAndDelete({ music_title: "Hysteria" })
-//     .then()
-//     .catch(console.log);
-// });
+afterAll(() => {
+  Room.findOneAndDelete({ music_title: "Laskar Pelangi" })
+    .then()
+    .catch(console.log);
+});

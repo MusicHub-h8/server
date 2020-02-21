@@ -21,8 +21,8 @@ app.use(express.json());
 app.use("/", router);
 
 app.use("/", errorHandler);
-// app.listen(PORT, () => {
-//   console.log("app is listening on PORT", PORT);
-// });
+app.listen(PORT, () => {
+  console.log("app is listening on PORT", PORT);
+});
 
 module.exports = app;

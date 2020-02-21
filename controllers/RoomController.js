@@ -2,6 +2,7 @@ const { Room } = require("../models/");
 
 class RoomController {
   static create(req, res, next) {
+    console.log("masuk create");
     Room.create({
       music_title: req.body.music_title,
       description: req.body.description,

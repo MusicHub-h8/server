@@ -8,6 +8,7 @@ const jwt = require("jsonwebtoken");
 let access_token = null;
 let createdRoomId = null;
 let idToInvite = null;
+let unauthorizedAccessToken = null;
 
 beforeAll(async () => {
   const { _id } = await User.create({
@@ -20,6 +21,18 @@ beforeAll(async () => {
   access_token = jwt.sign({ _id }, process.env.SECRET);
   const { _id: toInvite } = await User.findOne({ email: "johndoe@gmail.com" });
   idToInvite = toInvite;
+
+  const { _id: unauthorizedId } = await User.create({
+    email: "bobby@gmail.com",
+    display_name: "bobby",
+    avatar: "www.google.com",
+    genre: "Rock",
+    instruments: ["Drums"]
+  });
+  unauthorizedAccessToken = jwt.sign(
+    { _id: unauthorizedId },
+    process.env.SECRET
+  );
 });
 
 describe("Room Operations", () => {
@@ -78,6 +91,38 @@ describe("Room Operations", () => {
       .set("access_token", access_token);
     expect(res.statusCode).toEqual(200);
     expect(res.body.message).toEqual("Delete Successful");
+    done();
+  });
+});
+
+describe("Error Handling", () => {
+  test("Providing invalid/no token will return proper error message and status code 400", async done => {
+    const res = await request.post("/rooms").send({
+      music_title: "Hysteria",
+      description: "Pop Rock, I WANT YOU NOW, LAST CHANCE TO LOSE CONTROL"
+    });
+    expect(res.statusCode).toEqual(400);
+    expect(res.body.message).toEqual(
+      "Your Authorization token is either empty or invalid"
+    );
+    done();
+  });
+
+  test("Providing empty field(s) will return proper error message and status code 400", async done => {
+    const res = await request.post("/rooms").set("access_token", access_token);
+    expect(res.statusCode).toEqual(400);
+    expect(res.body.errors[0]).toEqual("Path `music_title` is required.");
+    done();
+  });
+
+  test("Editing, deleting or removing without privilege will return proper error message and status code 400", async done => {
+    const res = await request
+      .patch(`/rooms/${createdRoomId}/remove/${idToInvite}`)
+      .set("access_token", unauthorizedAccessToken);
+    expect(res.statusCode).toEqual(401);
+    expect(res.body.message).toEqual(
+      "You are not authorized to do this action"
+    );
     done();
   });
 });

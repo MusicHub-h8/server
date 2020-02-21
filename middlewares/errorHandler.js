@@ -14,6 +14,14 @@ module.exports = function(err, req, res, next) {
       errors.push(mongooseErrors[key].message);
     }
     res.status(400).json({ errors });
+  } else if (stringifiedErr.indexOf("JsonWebTokenError" !== -1)) {
+    res.status(400).json({
+      message: "Your Authorization token is either empty or invalid"
+    });
+  } else if (stringifiedErr.indexOf("MongoError")) {
+    res.status(400).json({
+      message: "Input values invalid"
+    });
   } else {
     console.log(err);
     res.status(500).json({

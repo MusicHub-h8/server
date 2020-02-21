@@ -71,16 +71,15 @@ describe("Room Operations", () => {
     expect(res.body.userIds.indexOf(idToInvite)).toEqual(-1);
     done();
   });
-});
-
-// ==========================================================================================================
-test("Should return status 200 on deleting a room, with success message", async done => {
-  const res = await request
-    .delete("/rooms/" + createdRoomId)
-    .set("access_token", access_token);
-  expect(res.statusCode).toEqual(200);
-  expect(res.body.message).toEqual("Delete Successful");
-  done();
+  // ==========================================================================================================
+  test("Should return status 200 on deleting a room, with success message", async done => {
+    const res = await request
+      .delete("/rooms/" + createdRoomId)
+      .set("access_token", access_token);
+    expect(res.statusCode).toEqual(200);
+    expect(res.body.message).toEqual("Delete Successful");
+    done();
+  });
 });
 
 afterAll(() => {

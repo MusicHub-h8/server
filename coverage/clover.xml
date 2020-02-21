@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1582275139458" clover="3.2.0">
-  <project timestamp="1582275139458" name="All files">
-    <metrics statements="195" coveredstatements="158" conditionals="14" coveredconditionals="5" methods="46" coveredmethods="30" elements="255" coveredelements="193" complexity="0" loc="195" ncloc="195" packages="5" files="19" classes="19"/>
+<coverage generated="1582277352402" clover="3.2.0">
+  <project timestamp="1582277352402" name="All files">
+    <metrics statements="200" coveredstatements="160" conditionals="16" coveredconditionals="5" methods="49" coveredmethods="32" elements="265" coveredelements="197" complexity="0" loc="200" ncloc="200" packages="5" files="19" classes="19"/>
     <package name="server">
       <metrics statements="17" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="app.js" path="/home/gabdomnovem/Desktop/Hacktiv8 Immersive/Week 9/FINAL PROJECT/server/app.js">
+      <file name="app.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/app.js">
         <metrics statements="17" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="3" type="stmt"/>
         <line num="3" count="3" type="stmt"/>
@@ -26,9 +26,9 @@
       </file>
     </package>
     <package name="server.controllers">
-      <metrics statements="49" coveredstatements="36" conditionals="2" coveredconditionals="1" methods="30" coveredmethods="20"/>
-      <file name="RoomController.js" path="/home/gabdomnovem/Desktop/Hacktiv8 Immersive/Week 9/FINAL PROJECT/server/controllers/RoomController.js">
-        <metrics statements="16" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="13" coveredmethods="9"/>
+      <metrics statements="52" coveredstatements="38" conditionals="2" coveredconditionals="1" methods="33" coveredmethods="22"/>
+      <file name="RoomController.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/controllers/RoomController.js">
+        <metrics statements="19" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="16" coveredmethods="11"/>
         <line num="1" count="3" type="stmt"/>
         <line num="2" count="3" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
@@ -44,9 +44,12 @@
         <line num="55" count="1" type="stmt"/>
         <line num="64" count="1" type="stmt"/>
         <line num="67" count="0" type="stmt"/>
-        <line num="72" count="3" type="stmt"/>
+        <line num="72" count="1" type="stmt"/>
+        <line num="79" count="1" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+        <line num="87" count="3" type="stmt"/>
       </file>
-      <file name="TrackController.js" path="/home/gabdomnovem/Desktop/Hacktiv8 Immersive/Week 9/FINAL PROJECT/server/controllers/TrackController.js">
+      <file name="TrackController.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/controllers/TrackController.js">
         <metrics statements="8" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="4"/>
         <line num="1" count="3" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
@@ -57,7 +60,7 @@
         <line num="25" count="0" type="stmt"/>
         <line num="30" count="3" type="stmt"/>
       </file>
-      <file name="UserController.js" path="/home/gabdomnovem/Desktop/Hacktiv8 Immersive/Week 9/FINAL PROJECT/server/controllers/UserController.js">
+      <file name="UserController.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/controllers/UserController.js">
         <metrics statements="21" coveredstatements="14" conditionals="2" coveredconditionals="1" methods="11" coveredmethods="7"/>
         <line num="1" count="3" type="stmt"/>
         <line num="2" count="3" type="stmt"/>
@@ -81,7 +84,7 @@
         <line num="67" count="0" type="stmt"/>
         <line num="72" count="3" type="stmt"/>
       </file>
-      <file name="index.js" path="/home/gabdomnovem/Desktop/Hacktiv8 Immersive/Week 9/FINAL PROJECT/server/controllers/index.js">
+      <file name="index.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/controllers/index.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="3" type="stmt"/>
         <line num="2" count="3" type="stmt"/>
@@ -90,24 +93,24 @@
       </file>
     </package>
     <package name="server.middlewares">
-      <metrics statements="73" coveredstatements="50" conditionals="12" coveredconditionals="4" methods="15" coveredmethods="10"/>
-      <file name="authentication.js" path="/home/gabdomnovem/Desktop/Hacktiv8 Immersive/Week 9/FINAL PROJECT/server/middlewares/authentication.js">
+      <metrics statements="74" coveredstatements="49" conditionals="14" coveredconditionals="4" methods="15" coveredmethods="10"/>
+      <file name="authentication.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/middlewares/authentication.js">
         <metrics statements="13" coveredstatements="10" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="2"/>
         <line num="1" count="3" type="stmt"/>
         <line num="2" count="3" type="stmt"/>
         <line num="4" count="3" type="stmt"/>
-        <line num="5" count="7" type="stmt"/>
-        <line num="6" count="7" type="stmt"/>
-        <line num="7" count="7" type="stmt"/>
-        <line num="8" count="7" type="stmt"/>
-        <line num="12" count="7" type="cond" truecount="1" falsecount="1"/>
-        <line num="13" count="7" type="stmt"/>
-        <line num="14" count="7" type="stmt"/>
+        <line num="5" count="8" type="stmt"/>
+        <line num="6" count="8" type="stmt"/>
+        <line num="7" count="8" type="stmt"/>
+        <line num="8" count="8" type="stmt"/>
+        <line num="12" count="8" type="cond" truecount="1" falsecount="1"/>
+        <line num="13" count="8" type="stmt"/>
+        <line num="14" count="8" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
       </file>
-      <file name="errorHandler.js" path="/home/gabdomnovem/Desktop/Hacktiv8 Immersive/Week 9/FINAL PROJECT/server/middlewares/errorHandler.js">
+      <file name="errorHandler.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/middlewares/errorHandler.js">
         <metrics statements="14" coveredstatements="1" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="3" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
@@ -124,7 +127,7 @@
         <line num="19" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
       </file>
-      <file name="index.js" path="/home/gabdomnovem/Desktop/Hacktiv8 Immersive/Week 9/FINAL PROJECT/server/middlewares/index.js">
+      <file name="index.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/middlewares/index.js">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="3" type="stmt"/>
         <line num="2" count="3" type="stmt"/>
@@ -133,18 +136,19 @@
         <line num="5" count="3" type="stmt"/>
         <line num="7" count="3" type="stmt"/>
       </file>
-      <file name="roomAuthorization.js" path="/home/gabdomnovem/Desktop/Hacktiv8 Immersive/Week 9/FINAL PROJECT/server/middlewares/roomAuthorization.js">
-        <metrics statements="8" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="2"/>
+      <file name="roomAuthorization.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/middlewares/roomAuthorization.js">
+        <metrics statements="9" coveredstatements="5" conditionals="4" coveredconditionals="1" methods="3" coveredmethods="2"/>
         <line num="1" count="3" type="stmt"/>
         <line num="3" count="3" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="6" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
       </file>
-      <file name="trackAuthorization.js" path="/home/gabdomnovem/Desktop/Hacktiv8 Immersive/Week 9/FINAL PROJECT/server/middlewares/trackAuthorization.js">
+      <file name="trackAuthorization.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/middlewares/trackAuthorization.js">
         <metrics statements="7" coveredstatements="5" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="2"/>
         <line num="1" count="3" type="stmt"/>
         <line num="3" count="3" type="stmt"/>
@@ -154,7 +158,7 @@
         <line num="9" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
       </file>
-      <file name="tracks.js" path="/home/gabdomnovem/Desktop/Hacktiv8 Immersive/Week 9/FINAL PROJECT/server/middlewares/tracks.js">
+      <file name="tracks.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/middlewares/tracks.js">
         <metrics statements="25" coveredstatements="22" conditionals="2" coveredconditionals="1" methods="5" coveredmethods="4"/>
         <line num="2" count="3" type="stmt"/>
         <line num="4" count="3" type="stmt"/>
@@ -185,14 +189,14 @@
     </package>
     <package name="server.models">
       <metrics statements="19" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="index.js" path="/home/gabdomnovem/Desktop/Hacktiv8 Immersive/Week 9/FINAL PROJECT/server/models/index.js">
+      <file name="index.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/models/index.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="3" type="stmt"/>
         <line num="2" count="3" type="stmt"/>
         <line num="3" count="3" type="stmt"/>
         <line num="5" count="3" type="stmt"/>
       </file>
-      <file name="roomModel.js" path="/home/gabdomnovem/Desktop/Hacktiv8 Immersive/Week 9/FINAL PROJECT/server/models/roomModel.js">
+      <file name="roomModel.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/models/roomModel.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="3" type="stmt"/>
         <line num="2" count="3" type="stmt"/>
@@ -200,7 +204,7 @@
         <line num="12" count="3" type="stmt"/>
         <line num="13" count="3" type="stmt"/>
       </file>
-      <file name="trackModel.js" path="/home/gabdomnovem/Desktop/Hacktiv8 Immersive/Week 9/FINAL PROJECT/server/models/trackModel.js">
+      <file name="trackModel.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/models/trackModel.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="3" type="stmt"/>
         <line num="2" count="3" type="stmt"/>
@@ -208,7 +212,7 @@
         <line num="12" count="3" type="stmt"/>
         <line num="13" count="3" type="stmt"/>
       </file>
-      <file name="userModel.js" path="/home/gabdomnovem/Desktop/Hacktiv8 Immersive/Week 9/FINAL PROJECT/server/models/userModel.js">
+      <file name="userModel.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/models/userModel.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="3" type="stmt"/>
         <line num="2" count="3" type="stmt"/>
@@ -218,8 +222,8 @@
       </file>
     </package>
     <package name="server.routes">
-      <metrics statements="37" coveredstatements="36" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="index.js" path="/home/gabdomnovem/Desktop/Hacktiv8 Immersive/Week 9/FINAL PROJECT/server/routes/index.js">
+      <metrics statements="38" coveredstatements="37" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="index.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/routes/index.js">
         <metrics statements="11" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="3" type="stmt"/>
         <line num="2" count="3" type="stmt"/>
@@ -233,8 +237,8 @@
         <line num="12" count="3" type="stmt"/>
         <line num="14" count="3" type="stmt"/>
       </file>
-      <file name="room.js" path="/home/gabdomnovem/Desktop/Hacktiv8 Immersive/Week 9/FINAL PROJECT/server/routes/room.js">
-        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="room.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/routes/room.js">
+        <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="3" type="stmt"/>
         <line num="2" count="3" type="stmt"/>
         <line num="3" count="3" type="stmt"/>
@@ -244,9 +248,10 @@
         <line num="8" count="3" type="stmt"/>
         <line num="9" count="3" type="stmt"/>
         <line num="10" count="3" type="stmt"/>
-        <line num="12" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
       </file>
-      <file name="track.js" path="/home/gabdomnovem/Desktop/Hacktiv8 Immersive/Week 9/FINAL PROJECT/server/routes/track.js">
+      <file name="track.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/routes/track.js">
         <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="3" type="stmt"/>
         <line num="2" count="3" type="stmt"/>
@@ -257,7 +262,7 @@
         <line num="17" count="3" type="stmt"/>
         <line num="18" count="3" type="stmt"/>
       </file>
-      <file name="user.js" path="/home/gabdomnovem/Desktop/Hacktiv8 Immersive/Week 9/FINAL PROJECT/server/routes/user.js">
+      <file name="user.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/routes/user.js">
         <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="3" type="stmt"/>
         <line num="2" count="3" type="stmt"/>

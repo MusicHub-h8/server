@@ -7,6 +7,11 @@ router.use(authentication);
 router.post("/", RoomController.create);
 router.post("/:roomId/invite/:userId", RoomController.invite);
 router.patch("/:roomId/invite/:userId", RoomController.acceptInvite);
-router.delete("/:id", roomAuthorization, RoomController.delete);
+router.patch(
+  "/:roomId/remove/:userId",
+  roomAuthorization,
+  RoomController.removeMember
+);
+router.delete("/:roomId", roomAuthorization, RoomController.delete);
 
 module.exports = router;

@@ -18,7 +18,7 @@ class RoomController {
       });
   }
   static delete(req, res, next) {
-    Room.deleteOne({ _id: req.params.id })
+    Room.deleteOne({ _id: req.params.roomId })
       .then(_ => {
         res.status(200).json({ message: "Delete Successful" });
       })
@@ -60,6 +60,21 @@ class RoomController {
           { new: true }
         );
       })
+      .then(room => {
+        res.status(200).json(room);
+      })
+      .catch(err => {
+        next(err);
+      });
+  }
+
+  static removeMember(req, res, next) {
+    Room.findByIdAndUpdate(
+      { _id: req.params.roomId },
+      {
+        $pull: { userIds: ObjectID(req.params.userId) }
+      }
+    )
       .then(room => {
         res.status(200).json(room);
       })

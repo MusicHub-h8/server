@@ -1,34 +1,27 @@
-require("dotenv").config();
 const supertest = require("supertest");
 const app = require("../app");
 const request = supertest(app);
+const jwt = require("jsonwebtoken");
+
+const { User, Track } = require("../models");
+
 let access_token = null;
-let room_id = null;
-const axios = require("axios");
 
 beforeAll(async () => {
-  access_token = await axios({
-    method: "POST",
-    headers: {
-      spotify_token: process.env.SPOTIFY_TOKEN
-    }
-  }).data.access_token;
-
-  room_id = await axios({
-    method: "POST",
-    headers: {
-      access_token
-    }
-  }).data._id;
+  const { _id } = User.findOne({ email: "johndoe@gmail.com" });
+  access_token = jwt.sign({ _id }, process.env.SECRET);
 });
 
 describe("Track Operations", () => {
   test("Should return status 201 on uploading a new track, complete with the track details", async done => {
-    const res = await request.post("/tracks").send({
-      instrument: "Piano",
-      roomId: room_id,
-      file_path: "http://testdummy.com"
-    });
+    const res = await request
+      .post("/tracks")
+      .send({
+        instrument: "Piano",
+        roomId: "AWESOME_ROOM_ID",
+        file_path: "http://testdummy.com"
+      })
+      .set("access_token", access_token);
 
     expect(res.statusCode).toEqual(201);
     expect(res.body).toHaveProperty("instrument");
@@ -36,4 +29,10 @@ describe("Track Operations", () => {
     expect(res.body).toHaveProperty("roomId");
     expect(res.body).toHaveProperty("file_path");
   });
+});
+
+afterAll(() => {
+  Track.findOneAndDelete({ roomId: "AWESOME_ROOM_ID" })
+    .then()
+    .catch(console.log);
 });

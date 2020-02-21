@@ -1,4 +1,4 @@
-const { Room } = require("../models/index");
+const { Room } = require("../models/");
 
 class RoomController {
   static create(req, res, next) {
@@ -18,9 +18,9 @@ class RoomController {
       });
   }
   static delete(req, res, next) {
-    Room.delete({ _id: req.params.id })
+    Room.deleteOne({ _id: req.params.id })
       .then(_ => {
-        res.status(200).json({ message: "Delete successful" });
+        res.status(200).json({ message: "Delete Successful" });
       })
       .catch(err => {
         next(err);

@@ -29,22 +29,21 @@ class UserController {
                 }
               })
               .then(({ data: result }) => {
-                let genreTopArtist = result.items[0].genres[0].split(" ")
+                let genreTopArtist = result.items[0].genres[0].split(" ");
                 return User.create({
-                    display_name: data.id,
-                    email: data.email,
-                    avatar: data.images[0].url,
-                    genre: genreTopArtist[1]
-                  });
-                    
+                  display_name: data.id,
+                  email: data.email,
+                  avatar: data.images[0].url,
+                  genre: genreTopArtist[1]
+                });
               })
               .then(user => {
                 const access_token = jwt.sign(
-                    { _id: user._id },
-                    process.env.SECRET
-                  );
-                  res.status(200).json({ access_token });
-              })
+                  { _id: user._id },
+                  process.env.SECRET
+                );
+                res.status(200).json({ access_token });
+              });
           }
         });
       })
@@ -53,23 +52,21 @@ class UserController {
       });
   }
 
-  static getRecommendedUser(req, res, next){
-    User.findOne({ _id : req.currentUserId})
-        .then(user => {
-          return User.find({ genre: user.genre})
-        })
-        .then(recommendations => {
-          let result = recommendations.filter( recommendation => {
-            return recommendation._id.toString() !== req.currentUserId.toString()
-          })
-          res.status(200).json(result)
-        })
-        .catch(err => {
-          next(err)
-        })
+  static getRecommendedUser(req, res, next) {
+    User.findOne({ _id: req.currentUserId })
+      .then(user => {
+        return User.find({ genre: user.genre });
+      })
+      .then(recommendations => {
+        let result = recommendations.filter(recommendation => {
+          return recommendation._id.toString() !== req.currentUserId.toString();
+        });
+        res.status(200).json(result);
+      })
+      .catch(err => {
+        next(err);
+      });
   }
 }
-
-
 
 module.exports = UserController;

@@ -6,9 +6,7 @@ var userSchema = new Schema({
     email: String,
     avatar: String,
     genre: String,
-    instruments: Array,
-
-
+    instruments: Array
 })
 
 

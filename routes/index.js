@@ -9,8 +9,8 @@ router.get('/', (req, res) => {
     res.send('musichub')
 })
 router.use('/users', userRouter)
-router.use('/rooms', roomRouter)
-router.use('/tracks', trackRouter)
+// router.use('/rooms', roomRouter)
+// router.use('/tracks', trackRouter)
 
 
 module.exports = router

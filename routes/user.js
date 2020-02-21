@@ -1,13 +1,9 @@
 const express = require('express')
 const router = express.Router()
+const { UserController } = require('../controllers/index')
 
 
+router.post('/login', UserController.login)
 
-router.post('/login', (req, res) => {
-    res.send('masuk', req.headers.spotify_token)
-})
-
-// cari di db ada gak yang emailnya udah sama 
-// find
 
 module.exports = router

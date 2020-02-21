@@ -29,22 +29,21 @@ class UserController {
                 }
               })
               .then(({ data: result }) => {
-                let genreTopArtist = result.items[0].genres[0].split(" ")
+                let genreTopArtist = result.items[0].genres[0].split(" ");
                 return User.create({
-                    display_name: data.id,
-                    email: data.email,
-                    avatar: data.images[0].url,
-                    genre: genreTopArtist[1]
-                  });
-                    
+                  display_name: data.id,
+                  email: data.email,
+                  avatar: data.images[0].url,
+                  genre: genreTopArtist[1]
+                });
               })
               .then(user => {
                 const access_token = jwt.sign(
-                    { _id: user._id },
-                    process.env.SECRET
-                  );
-                  res.status(200).json({ access_token });
-              })
+                  { _id: user._id },
+                  process.env.SECRET
+                );
+                res.status(200).json({ access_token });
+              });
           }
         });
       })

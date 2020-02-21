@@ -9,7 +9,7 @@ module.exports = function(req, res, next) {
         next();
       } else {
         res
-          .status(400)
+          .status(401)
           .json({ message: "You are not authorized to do this action" });
       }
     })

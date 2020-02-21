@@ -52,6 +52,44 @@ describe("Track Operations", () => {
   });
 });
 
+describe("Error handler for Track", () => {
+  test("Should return status 400 when deleting a track with invalid token", async done => {
+    const res = await request
+      .delete("/tracks/" + createdTrackId)
+      .set("access_token", "asdghjk");
+    expect(res.statusCode).toEqual(400);
+    expect(res.body.message).toEqual(
+      "Your Authorization token is either empty or invalid"
+    );
+    done();
+  });
+  test("Should return status 401 when deleting a track with invalid track ID", async done => {
+    const res = await request
+      .delete("/tracks/" + "5e4f8005555ac728a5970779")
+      .set("access_token", access_token);
+    expect(res.statusCode).toEqual(401);
+    expect(res.body.message).toEqual(
+      "You are not authorized to do this action"
+    );
+    done();
+  });
+
+  test("Should return status 400 on uploading a new track without Instrument label", async done => {
+    try {
+      const res = await request
+        .post("/tracks/" + createdRoomId)
+        .attach("track", "./tests/1901_bass.mp3")
+        .set("access_token", access_token);
+      createdTrackId = res.body._id;
+      expect(res.statusCode).toEqual(400);
+      expect(res.body).toHaveProperty("errors");
+      done();
+    } catch (err) {
+      console.log(err);
+    }
+  });
+});
+
 afterAll(() => {
   Track.findOneAndDelete({ roomId: createdRoomId })
     .then()

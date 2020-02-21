@@ -9,7 +9,13 @@ let access_token = null;
 let createdRoomId = null;
 
 beforeAll(async () => {
-  const { _id } = await User.findOne({ email: "johndoe@gmail.com" });
+  const { _id } = await User.create({
+    email: "jimmyjames@gmail.com",
+    display_name: "jimmyjames",
+    avatar: "www.google.com",
+    genre: "Pop",
+    instruments: ["bass"]
+  });
   access_token = jwt.sign({ _id }, process.env.SECRET);
 });
 
@@ -33,6 +39,25 @@ describe("Room Operations", () => {
   });
 
   // ==========================================================================================================
+
+  test("Should return status 200 on new member invite with his/her data as proof", async done => {
+    const res = await request
+      .post(`/rooms/${createdRoomId}/invite/asdasidids2dn2d83`)
+      .set("access_token", access_token);
+    expect(res.statusCode).toEqual(200);
+    expect(res.body.pendingInvites.length).not.toEqual(0);
+    done();
+  });
+
+  // // ==========================================================================================================
+
+  test("Should return status 200 on invitation accept and room new status", async done => {
+    const res = await request
+      .patch(`/rooms/${createdRoomId}/invite/asdasidids2dn2d83`)
+      .set("access_token", access_token);
+    expect(res.statusCode).toEqual(200);
+    expect(res.body.userIds.length).not.toEqual(1);
+  });
 
   // ==========================================================================================================
   test("Should return status 200 on deleting a room, with success message", async done => {

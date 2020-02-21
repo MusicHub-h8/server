@@ -1,21 +1,19 @@
 const express = require("express");
 const router = express.Router();
-const authentication = require("../middlewares/authentication");
-const { TrackController } = require("../controllers/index");
-const tracks = require("../middlewares/tracks");
+const { TrackController } = require("../controllers");
+const {
+  authentication,
+  tracks,
+  trackAuthorization
+} = require("../middlewares/index");
 
 router.use(authentication);
 
-// router.post(
-//   "/",
-//   tracks.multer.single("track"),
-//   tracks.sendUploadToGCS,
-//
-// );
 router.post(
   "/:roomId",
   tracks.multer.single("track"),
   tracks.sendUploadToGCS,
   TrackController.upload
 );
+router.delete("/:id", TrackController.delete);
 module.exports = router;

@@ -56,7 +56,7 @@ describe("User Operations", () => {
 });
 
 afterAll(() => {
-  User.findOneAndDelete({ email: "agus.bambang@gmail.com" })
+  User.findOneAndDelete({ email: "jimmyjames@gmail.com" })
     .then()
     .catch(console.log);
 });

@@ -2,7 +2,7 @@ require("dotenv").config();
 const supertest = require("supertest");
 const app = require("../app");
 const request = supertest(app);
-const { User, Room } = require("../models/");
+const { User, Room } = require("../models");
 const jwt = require("jsonwebtoken");
 
 let access_token = null;

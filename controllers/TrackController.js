@@ -2,6 +2,9 @@ const { Track } = require("../models/index");
 
 class TrackController {
   static upload(req, res, next) {
+    console.log(
+      "masuk track controller ==============================================="
+    );
     Track.create({
       instrument: req.body.instrument,
       userId: req.currentUserId,

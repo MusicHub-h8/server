@@ -1,4 +1,5 @@
 const { Room, User } = require("../models/");
+const ObjectID = require("mongoose").Types.ObjectId;
 
 class RoomController {
   static create(req, res, next) {
@@ -27,12 +28,14 @@ class RoomController {
   }
 
   static invite(req, res, next) {
-    User.findOneAndUpdate(
-      { _id: req.params.userId },
-      { $push: { pendingInvites: req.params.roomId }, new: true }
+    User.findByIdAndUpdate(
+      req.params.userId,
+      {
+        $push: { pendingInvites: ObjectID(req.params.roomId) }
+      },
+      { new: true }
     )
       .then(user => {
-        console.log(user);
         res.status(200).json(user);
       })
       .catch(err => {
@@ -41,16 +44,20 @@ class RoomController {
   }
 
   static acceptInvite(req, res, next) {
-    User.findOneAndUpdate(
-      { _id: req.params.userId },
-      { $pull: { pendingInvites: req.params.roomId }, new: true }
+    User.findByIdAndUpdate(
+      req.params.userId,
+      {
+        $pull: { pendingInvites: ObjectID(req.params.roomId) }
+      },
+      { new: true }
     )
       .then(user => {
-        return Room.findOneAndUpdate(
-          { _id: req.params.roomId },
+        return Room.findByIdAndUpdate(
+          req.params.roomId,
           {
-            $push: { userIds: req.params.userId }
-          }
+            $push: { userIds: ObjectID(req.params.userId) }
+          },
+          { new: true }
         );
       })
       .then(room => {

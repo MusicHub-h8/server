@@ -18,6 +18,16 @@ class TrackController {
         next(err);
       });
   }
+
+  static delete(req, res, next) {
+    Track.deleteOne({ _id: req.params.id })
+      .then(_ => {
+        res.status(200).json({ message: "Delete Successful" });
+      })
+      .catch(err => {
+        next(err);
+      });
+  }
 }
 
 module.exports = TrackController;

@@ -58,21 +58,29 @@ describe("Room Operations", () => {
     const res = await request
       .patch(`/rooms/${createdRoomId}/invite/${idToInvite}`)
       .set("access_token", access_token);
-    console.log(res.body);
     expect(res.statusCode).toEqual(200);
     expect(res.body.userIds.length).not.toEqual(0);
     done();
   });
-
   // ==========================================================================================================
-  test("Should return status 200 on deleting a room, with success message", async done => {
+  test("Should return status 200 on removing a member", async done => {
     const res = await request
-      .delete("/rooms/" + createdRoomId)
+      .patch(`/rooms/${createdRoomId}/remove/${idToInvite}`)
       .set("access_token", access_token);
     expect(res.statusCode).toEqual(200);
-    expect(res.body.message).toEqual("Delete Successful");
+    expect(res.body.userIds.indexOf(idToInvite)).toEqual(-1);
     done();
   });
+});
+
+// ==========================================================================================================
+test("Should return status 200 on deleting a room, with success message", async done => {
+  const res = await request
+    .delete("/rooms/" + createdRoomId)
+    .set("access_token", access_token);
+  expect(res.statusCode).toEqual(200);
+  expect(res.body.message).toEqual("Delete Successful");
+  done();
 });
 
 afterAll(() => {

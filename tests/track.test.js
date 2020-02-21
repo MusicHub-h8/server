@@ -3,36 +3,46 @@ const app = require("../app");
 const request = supertest(app);
 const jwt = require("jsonwebtoken");
 
-const { User, Track } = require("../models");
+const { User, Track, Room } = require("../models");
 
 let access_token = null;
+let createdRoomId = null;
 
 beforeAll(async () => {
-  const { _id } = User.findOne({ email: "johndoe@gmail.com" });
+  const { _id } = await User.findOne({ email: "johndoe@gmail.com" });
   access_token = jwt.sign({ _id }, process.env.SECRET);
+  const { _id: roomId } = await Room.create({
+    music_title: "Laskar Pelangi",
+    userIds: [],
+    description: "Kuy jamming bareng",
+    isOpen: true,
+    roomOwner: _id
+  });
+  createdRoomId = roomId;
 });
 
 describe("Track Operations", () => {
   test("Should return status 201 on uploading a new track, complete with the track details", async done => {
-    const res = await request
-      .post("/tracks")
-      .send({
-        instrument: "Piano",
-        roomId: "AWESOME_ROOM_ID",
-        file_path: "http://testdummy.com"
-      })
-      .set("access_token", access_token);
-
-    expect(res.statusCode).toEqual(201);
-    expect(res.body).toHaveProperty("instrument");
-    expect(res.body).toHaveProperty("userId");
-    expect(res.body).toHaveProperty("roomId");
-    expect(res.body).toHaveProperty("file_path");
+    try {
+      const res = await request
+        .post("/tracks/" + createdRoomId)
+        .field("instrument", "Bass")
+        .attach("track", "./tests/1901_bass.mp3")
+        .set("access_token", access_token);
+      expect(res.statusCode).toEqual(201);
+      expect(res.body).toHaveProperty("instrument");
+      expect(res.body).toHaveProperty("userId");
+      expect(res.body).toHaveProperty("roomId");
+      expect(res.body).toHaveProperty("file_path");
+      done();
+    } catch (err) {
+      console.log(err);
+    }
   });
 });
 
 afterAll(() => {
-  Track.findOneAndDelete({ roomId: "AWESOME_ROOM_ID" })
+  Track.findOneAndDelete({ roomId: createdRoomId })
     .then()
     .catch(console.log);
 });

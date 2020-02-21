@@ -9,7 +9,6 @@ module.exports = function(err, req, res, next) {
   } else if (stringifiedErr.indexOf("ValidatorError") !== -1) {
     const mongooseErrors = err.errors;
     const errors = [];
-
     for (let key in mongooseErrors) {
       errors.push(mongooseErrors[key].message);
     }
@@ -18,12 +17,7 @@ module.exports = function(err, req, res, next) {
     res.status(400).json({
       message: "Your Authorization token is either empty or invalid"
     });
-  } else if (stringifiedErr.indexOf("MongoError")) {
-    res.status(400).json({
-      message: "Input values invalid"
-    });
   } else {
-    console.log(err);
     res.status(500).json({
       message: "Internal server error, check the console"
     });

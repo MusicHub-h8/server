@@ -9,7 +9,7 @@ var roomSchema = new Schema({
   userIds: [{ user: { type: Schema.Types.ObjectId, ref: "User" } }],
   description: String,
   isOpen: Boolean,
-  roomOwner: { type: Schema.Types.ObjectId, ref: "User" }
+  roomOwner: { type: Schema.Types.ObjectId, ref: "User", required: true }
 });
 
 var Room = mongoose.model("Room", roomSchema);

@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 
 let access_token = null;
 let createdRoomId = null;
+let idToInvite = null;
 
 beforeAll(async () => {
   const { _id } = await User.create({
@@ -17,6 +18,8 @@ beforeAll(async () => {
     instruments: ["bass"]
   });
   access_token = jwt.sign({ _id }, process.env.SECRET);
+  const { _id: toInvite } = await User.findOne({ email: "johndoe@gmail.com" });
+  idToInvite = toInvite;
 });
 
 describe("Room Operations", () => {
@@ -42,7 +45,7 @@ describe("Room Operations", () => {
 
   test("Should return status 200 on new member invite with his/her data as proof", async done => {
     const res = await request
-      .post(`/rooms/${createdRoomId}/invite/asdasidids2dn2d83`)
+      .post(`/rooms/${createdRoomId}/invite/${idToInvite}`)
       .set("access_token", access_token);
     expect(res.statusCode).toEqual(200);
     expect(res.body.pendingInvites.length).not.toEqual(0);
@@ -53,7 +56,7 @@ describe("Room Operations", () => {
 
   test("Should return status 200 on invitation accept and room new status", async done => {
     const res = await request
-      .patch(`/rooms/${createdRoomId}/invite/asdasidids2dn2d83`)
+      .patch(`/rooms/${createdRoomId}/invite/${idToInvite}`)
       .set("access_token", access_token);
     expect(res.statusCode).toEqual(200);
     expect(res.body.userIds.length).not.toEqual(1);

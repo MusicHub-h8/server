@@ -43,7 +43,7 @@ beforeAll(async () => {
   );
 
   const { _id: idRoom } = await Room.create({
-    music_title: "Somebody To Love",
+    music_title: "Somebody to Love",
     description: "Can anybody find meeeeeeeeeeeeeeeeeeee",
     isOpen: true,
     userIds: [],
@@ -154,6 +154,9 @@ afterAll(() => {
     })
     .then(() => {
       return User.findOneAndDelete({ email: "bustin.jieber@gmail.com" });
+    })
+    .then(() => {
+      return Room.findOneAndDelete({ music_title: "Somebody to Love" });
     })
     .catch(console.log);
 });

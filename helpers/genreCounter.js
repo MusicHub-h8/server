@@ -64,7 +64,6 @@ module.exports = function genreCounter(result) {
       fetchGenres.push(genre);
     });
   });
-  console.log(fetchGenres);
   allGenres.forEach(genreItem => {
     let mainGenre = genreItem.name.toLowerCase();
     fetchGenres.forEach(genreName => {
@@ -73,8 +72,5 @@ module.exports = function genreCounter(result) {
       }
     });
   });
-
-  console.log(allGenres.sort((a, b) => a.total > b.total));
-  console.log(allGenres[allGenres.length - 1].name);
   return allGenres[allGenres.length - 1].name;
 };

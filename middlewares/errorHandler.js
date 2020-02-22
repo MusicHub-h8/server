@@ -1,6 +1,5 @@
 module.exports = function(err, req, res, next) {
   const stringifiedErr = JSON.stringify(err);
-
   if (err.code === 404) {
     res.status(err.code).json({
       message: err.resource + " not found"

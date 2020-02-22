@@ -92,6 +92,32 @@ describe("Room Operations", () => {
     expect(res.body.userIds.length).not.toEqual(0);
     done();
   });
+
+  // ==========================================================================================================
+  test("Should return status 200 and array of rooms that a user is involved in", async done => {
+    const res = await request
+      .get("/rooms/me")
+      .set("access_token", access_token);
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toHaveProperty("involved");
+    expect(res.body).toHaveProperty("owned");
+    done();
+  });
+
+  // ==========================================================================================================
+  test("Should return status 200 and a rooms details and tracks on route hitting", async done => {
+    const res = await request
+      .get("/rooms/" + createdRoomId)
+      .set("access_token", access_token);
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toHavePropery("music_title");
+    expect(res.body).toHaveProperty("userIds");
+    expect(res.body).toHaveProperty("description");
+    expect(res.body).toHaveProperty("isOpen");
+    expect(res.body).toHaveProperty("roomOwner");
+    expect(Array.isArray(res.body.tracks)).toEqual(true);
+  });
+
   // ==========================================================================================================
   test("Should return status 200 on removing a member", async done => {
     const res = await request

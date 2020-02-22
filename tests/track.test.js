@@ -10,7 +10,13 @@ let createdRoomId = null;
 let createdTrackId = null;
 
 beforeAll(async () => {
-  const { _id } = await User.findOne({ email: "johndoe@gmail.com" });
+  const { _id } = await User.create({
+    email: "john.doe@gmail.com",
+    display_name: "johndoe",
+    avatar: "www.google.com",
+    genre: "Pop",
+    instruments: ["bass"]
+  });
   access_token = jwt.sign({ _id }, process.env.SECRET);
   const { _id: roomId } = await Room.create({
     music_title: "Laskar Pelangi",
@@ -39,6 +45,7 @@ describe("Track Operations", () => {
       done();
     } catch (err) {
       console.log(err);
+      done();
     }
   });
   // =====================================================================================================
@@ -86,12 +93,16 @@ describe("Error handler for Track", () => {
       done();
     } catch (err) {
       console.log(err);
+      done();
     }
   });
 });
 
 afterAll(() => {
-  Track.findOneAndDelete({ roomId: createdRoomId })
+  User.findOneAndDelete({ email: "john.doe@gmail.com" })
+    .then(() => {
+      return Track.findOneAndDelete({ roomId: createdRoomId });
+    })
     .then()
     .catch(console.log);
 });

@@ -1,6 +1,8 @@
 const { User } = require("../models/index");
 const axios = require("axios");
 const jwt = require("jsonwebtoken");
+const genreCounter = require("../helpers/genreCounter");
+
 class UserController {
   static login(req, res, next) {
     axios
@@ -18,7 +20,7 @@ class UserController {
               { _id: user._id },
               process.env.SECRET
             );
-            res.status(200).json({ access_token });
+            res.status(200).json({ access_token, user });
           } else {
             axios
               .get("https://api.spotify.com/v1/me/top/artists", {
@@ -29,12 +31,16 @@ class UserController {
                 }
               })
               .then(({ data: result }) => {
-                let genreTopArtist = result.items[0].genres[0].split(" ");
+                console.log("masuk sini");
+                let genre = genreCounter(result);
+                let image = data.images[0]
+                  ? data.images[0].url
+                  : "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
                 return User.create({
                   display_name: data.id,
                   email: data.email,
-                  avatar: data.images[0].url,
-                  genre: genreTopArtist[1]
+                  avatar: image,
+                  genre: genre
                 });
               })
               .then(user => {
@@ -42,7 +48,7 @@ class UserController {
                   { _id: user._id },
                   process.env.SECRET
                 );
-                res.status(200).json({ access_token });
+                res.status(200).json({ access_token, user });
               });
           }
         });

@@ -28,10 +28,13 @@ class RoomController {
   }
 
   static invite(req, res, next) {
+    console.log(req.params.roomId, "ini room id");
+    console.log(ObjectID(req.params.roomId), "ini object room id");
+
     User.findByIdAndUpdate(
       req.params.userId,
       {
-        $push: { pendingInvites: ObjectID(req.params.roomId) }
+        $push: { pendingInvites: req.params.roomId }
       },
       { new: true }
     )
@@ -47,20 +50,22 @@ class RoomController {
     User.findByIdAndUpdate(
       req.params.userId,
       {
-        $pull: { pendingInvites: ObjectID(req.params.roomId) }
+        $pull: { pendingInvites: req.params.roomId }
       },
       { new: true }
     )
       .then(user => {
+        console.log(user);
         return Room.findByIdAndUpdate(
           req.params.roomId,
           {
-            $push: { userIds: ObjectID(req.params.userId) }
+            $push: { userIds: req.params.userId }
           },
           { new: true }
         );
       })
       .then(room => {
+        console.log(room);
         res.status(200).json(room);
       })
       .catch(err => {
@@ -72,11 +77,28 @@ class RoomController {
     Room.findByIdAndUpdate(
       { _id: req.params.roomId },
       {
-        $pull: { userIds: ObjectID(req.params.userId) }
+        $pull: { userIds: req.params.userId }
       }
     )
       .then(room => {
         res.status(200).json(room);
+      })
+      .catch(err => {
+        next(err);
+      });
+  }
+
+  static fetchMyRooms(req, res, next) {
+    let owned = "";
+    let involved = "";
+    Room.find({ roomOwner: req.currentUserId })
+      .then(result => {
+        owned = result;
+        return Room.find({ userIds: req.currentUserId.toString() });
+      })
+      .then(rooms => {
+        involved = rooms;
+        res.status(200).json({ owned, involved });
       })
       .catch(err => {
         next(err);

@@ -7,7 +7,7 @@ var userSchema = new Schema({
   avatar: String,
   genre: String,
   instruments: Array,
-  pendingInvites: [{ room: { type: Schema.Types.ObjectId, ref: "Room" } }]
+  pendingInvites: [{ type: Schema.Types.ObjectId, ref: "Room" }]
 });
 
 var User = mongoose.model("User", userSchema);

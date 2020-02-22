@@ -4,35 +4,52 @@ const app = require("../app");
 const request = supertest(app);
 const { User, Room } = require("../models");
 const jwt = require("jsonwebtoken");
+const ObjectID = require("mongoose").Types.ObjectId;
 
 let access_token = null;
 let createdRoomId = null;
 let idToInvite = null;
-let unauthorizedAccessToken = null;
+let unauthorizedRoomId = null;
 
 beforeAll(async () => {
   const { _id } = await User.create({
-    email: "jimmyjames@gmail.com",
-    display_name: "jimmyjames",
-    avatar: "www.google.com",
-    genre: "Pop",
-    instruments: ["bass"]
+    email: "foo.bar@gmail.com",
+    display_name: "foobar",
+    avatar: "www.yahoo.com",
+    genre: "Swing",
+    instruments: ["Keyboard"]
   });
   access_token = jwt.sign({ _id }, process.env.SECRET);
-  const { _id: toInvite } = await User.findOne({ email: "johndoe@gmail.com" });
+
+  const { _id: toInvite } = await User.create({
+    email: "bobby.morse@gmail.com",
+    display_name: "bobbymorse",
+    avatar: "www.tokopedia.com",
+    genre: "Classic",
+    instruments: ["Piano"]
+  });
   idToInvite = toInvite;
 
-  // const { _id: unauthorizedId } = await User.create({
-  //   email: "bobby@gmail.com",
-  //   display_name: "bobby",
-  //   avatar: "www.google.com",
-  //   genre: "Rock",
-  //   instruments: ["Drums"]
-  // });
-  // unauthorizedAccessToken = jwt.sign(
-  //   { _id: unauthorizedId },
-  //   process.env.SECRET
-  // );
+  const { _id: unauthorizedId } = await User.create({
+    email: "bustin.jieber@gmail.com",
+    display_name: "bustinjieber",
+    avatar: "www.youtube.com",
+    genre: "Folk",
+    instruments: ["Gendang"]
+  });
+  unauthorizedAccessToken = jwt.sign(
+    { _id: unauthorizedId },
+    process.env.SECRET
+  );
+
+  const { _id: idRoom } = await Room.create({
+    music_title: "Somebody To Love",
+    description: "Can anybody find meeeeeeeeeeeeeeeeeeee",
+    isOpen: true,
+    userIds: [],
+    roomOwner: unauthorizedId
+  });
+  unauthorizedRoomId = idRoom;
 });
 
 describe("Room Operations", () => {
@@ -115,9 +132,9 @@ describe("Error Handling", () => {
     done();
   });
 
-  test("Editing, deleting or removing without privilege will return proper error message and status code 400", async done => {
+  test("Editing, deleting or removing without privilege will return proper error message and status code 401", async done => {
     const res = await request
-      .patch(`/rooms/5e4f7702f710bd1dcc2eed62/remove/${idToInvite}`)
+      .delete(`/rooms/${unauthorizedRoomId}`)
       .set("access_token", access_token);
     expect(res.statusCode).toEqual(401);
     expect(res.body.message).toEqual(
@@ -128,7 +145,15 @@ describe("Error Handling", () => {
 });
 
 afterAll(() => {
-  Room.findOneAndDelete({ music_title: "Laskar Pelangi" })
-    .then()
+  User.findOneAndDelete({ email: "bobby.morse@gmail.com" })
+    .then(() => {
+      return User.findOneAndDelete({ email: "foo.bar@gmail.com" });
+    })
+    .then(() => {
+      return Room.findOneAndDelete({ music_title: "Laskar Pelangi" });
+    })
+    .then(() => {
+      return User.findOneAndDelete({ email: "bustin.jieber@gmail.com" });
+    })
     .catch(console.log);
 });

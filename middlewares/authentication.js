@@ -13,8 +13,8 @@ module.exports = function(req, res, next) {
           req.currentUserId = result._id;
           next();
         } else {
-          res.status(500).json({
-            message: "Token does not match"
+          res.status(400).json({
+            message: "Token is no longer valid"
           });
         }
       })

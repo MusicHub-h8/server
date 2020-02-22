@@ -10,7 +10,7 @@ const mongoose = require("mongoose");
 const errorHandler = require("./middlewares/errorHandler");
 app.use(cors());
 app.use(logger("dev"));
-mongoose.connect("mongodb://localhost/musichub", {
+mongoose.connect("mongodb://localhost/musichub-" + process.env.NODE_ENV, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false

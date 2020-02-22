@@ -28,9 +28,6 @@ class RoomController {
   }
 
   static invite(req, res, next) {
-    console.log(req.params.roomId, "ini room id");
-    console.log(ObjectID(req.params.roomId), "ini object room id");
-
     User.findByIdAndUpdate(
       req.params.userId,
       {
@@ -55,7 +52,6 @@ class RoomController {
       { new: true }
     )
       .then(user => {
-        console.log(user);
         return Room.findByIdAndUpdate(
           req.params.roomId,
           {
@@ -65,7 +61,6 @@ class RoomController {
         );
       })
       .then(room => {
-        console.log(room);
         res.status(200).json(room);
       })
       .catch(err => {

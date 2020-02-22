@@ -7,6 +7,36 @@ jest.mock("axios");
 
 let access_token = null;
 
+beforeAll(async () => {
+  axios.get.mockImplementation((url, options) => {
+    if (url === "https://api.spotify.com/v1/me") {
+      return Promise.resolve({
+        data: {
+          id: "",
+          email: "agus.bambang@gmail.com",
+          images: [
+            {
+              url: "http://www.google.com"
+            }
+          ]
+        }
+      });
+    } else if (url === "https://api.spotify.com/v1/me/top/artists") {
+      return Promise.resolve({
+        data: {
+          items: [
+            {
+              genres: ["Garage Rock"]
+            }
+          ]
+        }
+      });
+    }
+  });
+  const res = await request.post("/users/login").set({
+    spotify_token: "WOW"
+  });
+});
 describe("User Operations", () => {
   test("Should return user's access token on spotify login", async done => {
     axios.get.mockImplementation((url, options) => {

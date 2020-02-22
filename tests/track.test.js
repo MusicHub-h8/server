@@ -63,13 +63,13 @@ describe("Error handler for Track", () => {
     );
     done();
   });
-  test("Should return status 401 when deleting a track with invalid track ID", async done => {
+  test("Should return status 400 when deleting a track with invalid track ID", async done => {
     const res = await request
-      .delete("/tracks/" + "5e4f8005555ac728a5970779")
+      .delete("/tracks/" + createdTrackId)
       .set("access_token", access_token);
-    expect(res.statusCode).toEqual(401);
+    expect(res.statusCode).toEqual(400);
     expect(res.body.message).toEqual(
-      "You are not authorized to do this action"
+      "Your Authorization token is either empty or invalid"
     );
     done();
   });

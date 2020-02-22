@@ -78,6 +78,9 @@ describe("Room Operations", () => {
       .post(`/rooms/${createdRoomId}/invite/${idToInvite}`)
       .set("access_token", access_token);
     expect(res.statusCode).toEqual(200);
+    expect(res.body.pendingInvites[0].toString()).toEqual(
+      createdRoomId.toString()
+    );
     expect(res.body.pendingInvites.length).not.toEqual(0);
     done();
   });
@@ -89,6 +92,7 @@ describe("Room Operations", () => {
       .patch(`/rooms/${createdRoomId}/invite/${idToInvite}`)
       .set("access_token", access_token);
     expect(res.statusCode).toEqual(200);
+    expect(res.body.userIds[0].toString()).toEqual(idToInvite.toString());
     expect(res.body.userIds.length).not.toEqual(0);
     done();
   });
@@ -110,12 +114,13 @@ describe("Room Operations", () => {
       .get("/rooms/" + createdRoomId)
       .set("access_token", access_token);
     expect(res.statusCode).toEqual(200);
-    expect(res.body).toHavePropery("music_title");
-    expect(res.body).toHaveProperty("userIds");
-    expect(res.body).toHaveProperty("description");
-    expect(res.body).toHaveProperty("isOpen");
-    expect(res.body).toHaveProperty("roomOwner");
+    expect(res.body.detail).toHaveProperty("music_title");
+    expect(res.body.detail).toHaveProperty("userIds");
+    expect(res.body.detail).toHaveProperty("description");
+    expect(res.body.detail).toHaveProperty("isOpen");
+    expect(res.body.detail).toHaveProperty("roomOwner");
     expect(Array.isArray(res.body.tracks)).toEqual(true);
+    done();
   });
 
   // ==========================================================================================================

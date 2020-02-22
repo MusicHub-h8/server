@@ -5,6 +5,7 @@ const { authentication, roomAuthorization } = require("../middlewares");
 
 router.use(authentication);
 router.get("/me", RoomController.fetchMyRooms);
+router.get("/:id", RoomController.getRoomDetail);
 router.post("/", RoomController.create);
 router.post("/:roomId/invite/:userId", RoomController.invite);
 router.patch("/:roomId/invite/:userId", RoomController.acceptInvite);

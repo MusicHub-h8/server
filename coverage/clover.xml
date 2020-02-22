@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1582362320194" clover="3.2.0">
-  <project timestamp="1582362320195" name="All files">
+<coverage generated="1582363852790" clover="3.2.0">
+  <project timestamp="1582363852790" name="All files">
     <metrics statements="219" coveredstatements="198" conditionals="22" coveredconditionals="14" methods="55" coveredmethods="44" elements="296" coveredelements="256" complexity="0" loc="219" ncloc="219" packages="6" files="20" classes="20"/>
     <package name="server">
       <metrics statements="17" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -69,20 +69,20 @@
         <line num="8" count="3" type="stmt"/>
         <line num="17" count="3" type="stmt"/>
         <line num="18" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="19" count="2" type="stmt"/>
-        <line num="23" count="2" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
-        <line num="34" count="1" type="stmt"/>
-        <line num="35" count="1" type="stmt"/>
-        <line num="36" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="39" count="1" type="stmt"/>
-        <line num="47" count="1" type="stmt"/>
-        <line num="51" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="34" count="2" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="36" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="39" count="2" type="stmt"/>
+        <line num="47" count="2" type="stmt"/>
+        <line num="51" count="2" type="stmt"/>
         <line num="57" count="0" type="stmt"/>
         <line num="62" count="1" type="stmt"/>
         <line num="64" count="1" type="stmt"/>
         <line num="67" count="1" type="stmt"/>
-        <line num="68" count="1" type="stmt"/>
+        <line num="68" count="2" type="stmt"/>
         <line num="70" count="1" type="stmt"/>
         <line num="73" count="0" type="stmt"/>
         <line num="78" count="3" type="stmt"/>
@@ -100,20 +100,20 @@
       <file name="genreCounter.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/helpers/genreCounter.js">
         <metrics statements="15" coveredstatements="14" conditionals="2" coveredconditionals="1" methods="6" coveredmethods="6"/>
         <line num="1" count="3" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="61" count="1" type="stmt"/>
-        <line num="62" count="1" type="stmt"/>
-        <line num="63" count="1" type="stmt"/>
-        <line num="64" count="1" type="stmt"/>
-        <line num="67" count="1" type="stmt"/>
-        <line num="68" count="1" type="stmt"/>
-        <line num="69" count="14" type="stmt"/>
-        <line num="70" count="14" type="stmt"/>
-        <line num="71" count="14" type="cond" truecount="1" falsecount="1"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="61" count="2" type="stmt"/>
+        <line num="62" count="2" type="stmt"/>
+        <line num="63" count="2" type="stmt"/>
+        <line num="64" count="2" type="stmt"/>
+        <line num="67" count="2" type="stmt"/>
+        <line num="68" count="2" type="stmt"/>
+        <line num="69" count="28" type="stmt"/>
+        <line num="70" count="28" type="stmt"/>
+        <line num="71" count="28" type="cond" truecount="1" falsecount="1"/>
         <line num="72" count="0" type="stmt"/>
-        <line num="77" count="13" type="stmt"/>
-        <line num="78" count="1" type="stmt"/>
-        <line num="79" count="1" type="stmt"/>
+        <line num="77" count="26" type="stmt"/>
+        <line num="78" count="2" type="stmt"/>
+        <line num="79" count="2" type="stmt"/>
       </file>
     </package>
     <package name="server.middlewares">
@@ -269,11 +269,11 @@
         <line num="3" count="3" type="stmt"/>
         <line num="4" count="3" type="stmt"/>
         <line num="6" count="3" type="stmt"/>
-        <line num="7" count="3" type="stmt"/>
         <line num="8" count="3" type="stmt"/>
         <line num="9" count="3" type="stmt"/>
         <line num="10" count="3" type="stmt"/>
-        <line num="15" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
         <line num="17" count="3" type="stmt"/>
       </file>
       <file name="track.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/routes/track.js">

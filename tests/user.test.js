@@ -71,6 +71,7 @@ describe("User Operations", () => {
       expect(res.statusCode).toEqual(200);
       access_token = res.body.access_token;
       expect(res.body).toHaveProperty("access_token");
+      expect(res.body).toHaveProperty("user");
       done();
     } catch (err) {
       console.log(err);
@@ -108,6 +109,7 @@ describe("User Operations", () => {
       });
       expect(res.statusCode).toEqual(200);
       expect(res.body).toHaveProperty("access_token");
+      expect(res.body).toHaveProperty("user");
       done();
     } catch (err) {
       console.log(err);

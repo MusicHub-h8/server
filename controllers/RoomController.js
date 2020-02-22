@@ -1,4 +1,4 @@
-const { Room, User } = require("../models/");
+const { Room, User, Track } = require("../models/");
 const ObjectID = require("mongoose").Types.ObjectId;
 
 class RoomController {
@@ -31,7 +31,7 @@ class RoomController {
     User.findByIdAndUpdate(
       req.params.userId,
       {
-        $push: { pendingInvites: req.params.roomId }
+        $push: { pendingInvites: ObjectID(req.params.roomId) }
       },
       { new: true }
     )
@@ -47,7 +47,7 @@ class RoomController {
     User.findByIdAndUpdate(
       req.params.userId,
       {
-        $pull: { pendingInvites: req.params.roomId }
+        $pull: { pendingInvites: ObjectID(req.params.roomId) }
       },
       { new: true }
     )
@@ -55,7 +55,7 @@ class RoomController {
         return Room.findByIdAndUpdate(
           req.params.roomId,
           {
-            $push: { userIds: req.params.userId }
+            $push: { userIds: ObjectID(req.params.userId) }
           },
           { new: true }
         );
@@ -72,7 +72,7 @@ class RoomController {
     Room.findByIdAndUpdate(
       { _id: req.params.roomId },
       {
-        $pull: { userIds: req.params.userId }
+        $pull: { userIds: ObjectID(req.params.userId) }
       }
     )
       .then(room => {
@@ -89,7 +89,7 @@ class RoomController {
     Room.find({ roomOwner: req.currentUserId })
       .then(result => {
         owned = result;
-        return Room.find({ userIds: req.currentUserId.toString() });
+        return Room.find({ userIds: req.currentUserId });
       })
       .then(rooms => {
         involved = rooms;
@@ -98,6 +98,20 @@ class RoomController {
       .catch(err => {
         next(err);
       });
+  }
+
+  static getRoomDetail(req, res, next) {
+    let room = {};
+    Room.findById(req.params.id)
+      .then(data => {
+        room.detail = data;
+        return Track.find({ roomId: req.params.id });
+      })
+      .then(tracks => {
+        room.tracks = tracks;
+        res.status(200).json(room);
+      })
+      .catch(next);
   }
 }
 

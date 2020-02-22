@@ -31,7 +31,6 @@ class UserController {
                 }
               })
               .then(({ data: result }) => {
-                console.log("masuk sini");
                 let genre = genreCounter(result);
                 let image = data.images[0]
                   ? data.images[0].url
@@ -67,6 +66,22 @@ class UserController {
         let result = recommendations.filter(recommendation => {
           return recommendation._id.toString() !== req.currentUserId.toString();
         });
+        res.status(200).json(result);
+      })
+      .catch(err => {
+        next(err);
+      });
+  }
+
+  static addInstruments(req, res, next) {
+    User.findByIdAndUpdate(
+      { _id: req.currentUserId },
+      {
+        instruments: req.body.instruments
+      },
+      { new: true }
+    )
+      .then(result => {
         res.status(200).json(result);
       })
       .catch(err => {

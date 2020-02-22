@@ -122,6 +122,16 @@ describe("User Operations", () => {
     expect(Array.isArray(res.body)).toBe(true);
     done();
   });
+  test("Should return status 200 and return user's data", async done => {
+    const res = await request
+      .patch("/users/instruments")
+      .set({
+        access_token
+      })
+      .send({ instruments: ["guitar"] });
+    expect(res.statusCode).toEqual(200);
+    done();
+  });
 });
 
 afterAll(() => {

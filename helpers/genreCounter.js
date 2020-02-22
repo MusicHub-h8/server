@@ -39,19 +39,42 @@ module.exports = function genreCounter(result) {
     {
       name: "Rock",
       total: 0
+    },
+    {
+      name: "Metal",
+      total: 0
+    },
+    {
+      name: "Pop",
+      total: 0
+    },
+    {
+      name: "Beats",
+      total: 0
+    },
+    {
+      name: "EDM",
+      total: 0
     }
   ];
-
-  let allGenres = [];
-  result.items.forEach(item => {
-    item.genres.forEach(genre => {
-      allGenres.push(genre);
+  // extract genres from all top artist
+  let fetchGenres = [];
+  result.items.forEach(artist => {
+    artist.genres.forEach(genre => {
+      fetchGenres.push(genre);
     });
   });
-  let singleGenre = [];
-  allGenres.forEach(genre => {
-    genre.split(" ");
+  console.log(fetchGenres);
+  allGenres.forEach(genreItem => {
+    let mainGenre = genreItem.name.toLowerCase();
+    fetchGenres.forEach(genreName => {
+      if (genreName.includes(mainGenre)) {
+        genreItem.total += 1;
+      }
+    });
   });
 
-  return allGenres;
+  console.log(allGenres.sort((a, b) => a.total > b.total));
+  console.log(allGenres[allGenres.length - 1].name);
+  return allGenres[allGenres.length - 1].name;
 };

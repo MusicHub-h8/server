@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
+<coverage generated="1582361056415" clover="3.2.0">
+  <project timestamp="1582361056415" name="All files">
+    <metrics statements="201" coveredstatements="181" conditionals="18" coveredconditionals="12" methods="49" coveredmethods="38" elements="268" coveredelements="231" complexity="0" loc="201" ncloc="201" packages="5" files="19" classes="19"/>
+=======
 <coverage generated="1582363852790" clover="3.2.0">
   <project timestamp="1582363852790" name="All files">
     <metrics statements="219" coveredstatements="198" conditionals="22" coveredconditionals="14" methods="55" coveredmethods="44" elements="296" coveredelements="256" complexity="0" loc="219" ncloc="219" packages="6" files="20" classes="20"/>
+>>>>>>> development
     <package name="server">
       <metrics statements="17" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="app.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/app.js">

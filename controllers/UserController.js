@@ -20,7 +20,7 @@ class UserController {
               { _id: user._id },
               process.env.SECRET
             );
-            res.status(200).json({ access_token });
+            res.status(200).json({ access_token, user });
           } else {
             axios
               .get("https://api.spotify.com/v1/me/top/artists", {
@@ -48,7 +48,7 @@ class UserController {
                   { _id: user._id },
                   process.env.SECRET
                 );
-                res.status(200).json({ access_token });
+                res.status(200).json({ access_token, user });
               });
           }
         });

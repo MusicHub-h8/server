@@ -87,6 +87,7 @@ class RoomController {
     let owned = "";
     let involved = "";
     Room.find({ roomOwner: req.currentUserId })
+      .sort("-createdAt")
       .then(result => {
         owned = result;
         return Room.find({ userIds: req.currentUserId });

@@ -72,5 +72,6 @@ module.exports = function genreCounter(result) {
       }
     });
   });
+  allGenres.sort((a, b) => a.total > b.total);
   return allGenres[allGenres.length - 1].name;
 };

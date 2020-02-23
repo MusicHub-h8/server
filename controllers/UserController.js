@@ -14,6 +14,7 @@ class UserController {
         }
       })
       .then(({ data }) => {
+        console.log(data);
         User.findOne({ email: data.email }).then(user => {
           if (user) {
             const access_token = jwt.sign(
@@ -32,11 +33,12 @@ class UserController {
               })
               .then(({ data: result }) => {
                 let genre = genreCounter(result);
+                console.log(data.display_name);
                 let image = data.images[0]
                   ? data.images[0].url
                   : "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
                 return User.create({
-                  display_name: data.id,
+                  display_name: data.display_name,
                   email: data.email,
                   avatar: image,
                   genre: genre
@@ -47,7 +49,7 @@ class UserController {
                   { _id: user._id },
                   process.env.SECRET
                 );
-                res.status(200).json({ access_token, user });
+                res.status(201).json({ access_token, user });
               });
           }
         });

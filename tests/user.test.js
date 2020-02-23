@@ -43,7 +43,7 @@ describe("User Operations", () => {
       if (url === "https://api.spotify.com/v1/me") {
         return Promise.resolve({
           data: {
-            id: "agusbambang",
+            display_name: "agusbambang",
             email: "agus.bambang@gmail.com",
             images: [
               {
@@ -68,7 +68,7 @@ describe("User Operations", () => {
       const res = await request.post("/users/login").set({
         spotify_token: "WOW"
       });
-      expect(res.statusCode).toEqual(200);
+      expect(res.statusCode).toEqual(201);
       access_token = res.body.access_token;
       expect(res.body).toHaveProperty("access_token");
       expect(res.body).toHaveProperty("user");
@@ -82,7 +82,7 @@ describe("User Operations", () => {
       if (url === "https://api.spotify.com/v1/me") {
         return Promise.resolve({
           data: {
-            id: "jimmyjames",
+            display_name: "jimmyjames",
             email: "jimmy.james@gmail.com",
             images: [
               {
@@ -115,6 +115,20 @@ describe("User Operations", () => {
       console.log(err);
     }
   });
+
+  test("Should return current user's data", async done => {
+    const res = await request.get("/users/me").set({
+      access_token
+    });
+    expect(res.body).toHaveProperty("display_name");
+    expect(res.body).toHaveProperty("email");
+    expect(res.body).toHaveProperty("avatar");
+    expect(res.body).toHaveProperty("genre");
+    expect(res.body).toHaveProperty("instruments");
+    expect(res.body).toHaveProperty("pendingInvites");
+    done();
+  });
+
   test("Should return status 200 and return user's recommendations", async done => {
     const res = await request.get("/users/recommendations").set({
       access_token

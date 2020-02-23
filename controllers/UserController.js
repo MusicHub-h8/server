@@ -14,7 +14,6 @@ class UserController {
         }
       })
       .then(({ data }) => {
-        console.log(data);
         User.findOne({ email: data.email }).then(user => {
           if (user) {
             const access_token = jwt.sign(
@@ -33,7 +32,6 @@ class UserController {
               })
               .then(({ data: result }) => {
                 let genre = genreCounter(result);
-                console.log(data.display_name);
                 let image = data.images[0]
                   ? data.images[0].url
                   : "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
@@ -57,6 +55,15 @@ class UserController {
       .catch(err => {
         next(err);
       });
+  }
+
+  static getUserDetails(req, res, next) {
+    User.findById(req.currentUserId)
+      .populate("pendingInvites")
+      .then(user => {
+        res.status(200).json(user);
+      })
+      .catch(next);
   }
 
   static getRecommendedUser(req, res, next) {

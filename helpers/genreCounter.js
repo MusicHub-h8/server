@@ -72,6 +72,16 @@ module.exports = function genreCounter(result) {
       }
     });
   });
-  allGenres.sort((a, b) => a.total > b.total);
+  // bubble sort
+  var length = allGenres.length;
+  for (var i = 0; i < length; i++) {
+    for (var j = 0; j < length - i - 1; j++) {
+      if (allGenres[j].total > allGenres[j + 1].total) {
+        var tmp = allGenres[j];
+        allGenres[j] = allGenres[j + 1];
+        allGenres[j + 1] = tmp;
+      }
+    }
+  }
   return allGenres[allGenres.length - 1].name;
 };

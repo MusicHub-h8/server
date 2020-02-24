@@ -8,6 +8,13 @@ jest.mock("axios");
 let access_token = null;
 
 beforeAll(async () => {
+  const { _id } = await User.create({
+    email: "leroy.james@gmail.com",
+    display_name: "leroyjames",
+    avatar: "www.google.com",
+    genre: "Pop",
+    instruments: ["bass"]
+  });
   axios.get.mockImplementation((url, options) => {
     if (url === "https://api.spotify.com/v1/me") {
       return Promise.resolve({
@@ -146,6 +153,16 @@ describe("User Operations", () => {
     expect(res.statusCode).toEqual(200);
     done();
   });
+
+  test("Should return status 200 and return allUsers data", async done => {
+    const res = await request.get("/users").set({
+      access_token
+    });
+    expect(res.statusCode).toEqual(200);
+    expect(Array.isArray(res.body)).toEqual(true);
+    expect(typeof res.body[0]).toEqual("object");
+    done();
+  });
 });
 
 afterAll(() => {
@@ -153,6 +170,8 @@ afterAll(() => {
     .then(() => {
       return User.findOneAndDelete({ email: "jimmy.james@gmail.com" });
     })
-    .then()
+    .then(() => {
+      return User.findOneAndDelete({ email: "leroy.james@gmail.com" });
+    })
     .catch(console.log);
 });

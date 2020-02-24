@@ -145,6 +145,18 @@ class UserController {
         .catch(console.log);
     }
   }
+  static fetchAllUsers(req, res, next) {
+    User.find()
+      .then(result => {
+        res
+          .status(200)
+          .json(result.filter(user => user._id !== req.currentUserId));
+      })
+      .catch(err => {
+        /* istanbul ignore next */
+        next(err);
+      });
+  }
 }
 
 module.exports = UserController;

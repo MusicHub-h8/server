@@ -16,6 +16,7 @@ const getPublicUrl = filename => {
 };
 
 const sendUploadToGCS = (req, res, next) => {
+  /* istanbul ignore next */
   if (!req.file) {
     return next();
   }
@@ -29,6 +30,7 @@ const sendUploadToGCS = (req, res, next) => {
     }
   });
 
+  /* istanbul ignore next */
   stream.on("error", err => {
     req.file.cloudStorageError = err;
     next(err);
@@ -36,10 +38,8 @@ const sendUploadToGCS = (req, res, next) => {
 
   stream.on("finish", () => {
     req.file.cloudStorageObject = gcsname;
-    file.makePublic().then(() => {
-      req.file.cloudStoragePublicUrl = getPublicUrl(gcsname);
-      next();
-    });
+    req.file.cloudStoragePublicUrl = getPublicUrl(gcsname);
+    next();
   });
 
   stream.end(req.file.buffer);

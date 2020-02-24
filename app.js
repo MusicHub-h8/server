@@ -1,13 +1,16 @@
 require("dotenv").config();
 
+const http = require("http");
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT;
+const server = http.createServer(app);
+const io = require("socket.io")(server);
 const logger = require("morgan");
 const router = require("./routes/index");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const errorHandler = require("./middlewares/errorHandler");
+
 app.use(cors());
 app.use(logger("dev"));
 mongoose.connect("mongodb://localhost/musichub-" + process.env.NODE_ENV, {
@@ -18,8 +21,14 @@ mongoose.connect("mongodb://localhost/musichub-" + process.env.NODE_ENV, {
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.use(function(req, res, next) {
+  req.io = io;
+  next();
+});
+
 app.use("/", router);
 
 app.use("/", errorHandler);
 
-module.exports = app;
+module.exports = server;

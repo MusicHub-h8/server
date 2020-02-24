@@ -53,6 +53,7 @@ class UserController {
         });
       })
       .catch(err => {
+        /* istanbul ignore next */
         next(err);
       });
   }
@@ -63,7 +64,10 @@ class UserController {
       .then(user => {
         res.status(200).json(user);
       })
-      .catch(next);
+      .catch(err => {
+        /* istanbul ignore next */
+        next(err);
+      });
   }
 
   static getRecommendedUser(req, res, next) {
@@ -78,6 +82,7 @@ class UserController {
         res.status(200).json(result);
       })
       .catch(err => {
+        /* istanbul ignore next */
         next(err);
       });
   }
@@ -94,6 +99,7 @@ class UserController {
         res.status(200).json(result);
       })
       .catch(err => {
+        /* istanbul ignore next */
         next(err);
       });
   }

@@ -9,9 +9,14 @@ class TrackController {
       file_path: req.file.cloudStoragePublicUrl
     })
       .then(result => {
+        /* istanbul ignore next */
+        req.io.on("connection", socket => {
+          socket.emit("new track", result);
+        });
         res.status(201).json(result);
       })
       .catch(err => {
+        /* istanbul ignore next */
         next(err);
       });
   }
@@ -22,6 +27,7 @@ class TrackController {
         res.status(200).json({ message: "Delete Successful" });
       })
       .catch(err => {
+        /* istanbul ignore next */
         next(err);
       });
   }

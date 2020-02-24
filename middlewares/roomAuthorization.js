@@ -14,6 +14,7 @@ module.exports = function(req, res, next) {
       }
     })
     .catch(err => {
+      /* istanbul ignore next */
       next(err);
     });
 };

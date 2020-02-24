@@ -14,6 +14,7 @@ class RoomController {
         res.status(201).json(room);
       })
       .catch(err => {
+        /* istanbul ignore next */
         next(err);
       });
   }
@@ -23,6 +24,7 @@ class RoomController {
         res.status(200).json({ message: "Delete Successful" });
       })
       .catch(err => {
+        /* istanbul ignore next */
         next(err);
       });
   }
@@ -36,9 +38,14 @@ class RoomController {
       { new: true }
     )
       .then(user => {
+        /* istanbul ignore next */
+        req.io.on("connection", socket => {
+          socket.emit("update user", user);
+        });
         res.status(200).json(user);
       })
       .catch(err => {
+        /* istanbul ignore next */
         next(err);
       });
   }
@@ -52,6 +59,10 @@ class RoomController {
       { new: true }
     )
       .then(user => {
+        /* istanbul ignore next */
+        req.io.on("connection", socket => {
+          socket.emit("update user", user);
+        });
         return Room.findByIdAndUpdate(
           req.params.roomId,
           {
@@ -61,9 +72,14 @@ class RoomController {
         );
       })
       .then(room => {
+        /* istanbul ignore next */
+        req.io.on("connection", socket => {
+          socket.emit("update room", room);
+        });
         res.status(200).json(room);
       })
       .catch(err => {
+        /* istanbul ignore next */
         next(err);
       });
   }
@@ -79,6 +95,7 @@ class RoomController {
         res.status(200).json(room);
       })
       .catch(err => {
+        /* istanbul ignore next */
         next(err);
       });
   }
@@ -97,6 +114,7 @@ class RoomController {
         res.status(200).json({ owned, involved });
       })
       .catch(err => {
+        /* istanbul ignore next */
         next(err);
       });
   }
@@ -112,7 +130,10 @@ class RoomController {
         room.tracks = tracks;
         res.status(200).json(room);
       })
-      .catch(next);
+      .catch(err => {
+        /* istanbul ignore next */
+        next(err);
+      });
   }
 }
 

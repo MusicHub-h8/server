@@ -3,14 +3,10 @@
 /**
  * Module dependencies.
  */
-var http = require("http");
-var app = require('../app');
-var server = http.createServer(app);
-
-var port = process.env.PORT || 3000;
-
-app.set("port", port);
+const server = require("../app");
+const port = process.env.PORT || 3000;
 
 server.listen(port, function() {
-    console.log('Dor');
+  //   console.log("Dor");
+  console.log("Server is running on port " + port);
 });

@@ -150,7 +150,11 @@ class UserController {
       .then(result => {
         res
           .status(200)
-          .json(result.filter(user => user._id !== req.currentUserId));
+          .json(
+            result.filter(
+              user => user._id.toString() !== req.currentUserId.toString()
+            )
+          );
       })
       .catch(err => {
         /* istanbul ignore next */

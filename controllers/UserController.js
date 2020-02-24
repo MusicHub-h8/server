@@ -2,6 +2,7 @@ const { User } = require("../models/index");
 const axios = require("axios");
 const jwt = require("jsonwebtoken");
 const genreCounter = require("../helpers/genreCounter");
+var faker = require("faker");
 
 class UserController {
   static login(req, res, next) {
@@ -102,6 +103,47 @@ class UserController {
         /* istanbul ignore next */
         next(err);
       });
+  }
+
+  static generateDummies(req, res, next) {
+    let genres = [
+      "EDM",
+      "Beats",
+      "Pop",
+      "Metal",
+      "Rock",
+      "Reggae",
+      "New age",
+      "Jazz",
+      "Hip-hop",
+      "Folk",
+      "Electronic",
+      "Country",
+      "Classical",
+      "Blues"
+    ];
+
+    for (let i = 0; i < 20; i++) {
+      let instruments = ["Guitar", "Piano", "Violin", "Bass", "Drums", "Vocal"];
+      let randomName = faker.name.findName();
+      let randomEmail = faker.internet.email();
+      let randomImage = faker.image.avatar();
+      let indexGenre = Math.floor(Math.random() * genres.length);
+      let indexInstrument = Math.floor(Math.random() * instruments.length);
+
+      User.create({
+        display_name: randomName,
+        email: randomEmail,
+        avatar: randomImage,
+        genre: genres[indexGenre],
+        instruments: instruments[indexInstrument],
+        pendingInvites: []
+      })
+        .then(() => {
+          res.status(201).json({ message: "Dummies successfully created" });
+        })
+        .catch(console.log);
+    }
   }
 }
 

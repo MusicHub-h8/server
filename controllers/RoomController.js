@@ -39,9 +39,7 @@ class RoomController {
     )
       .then(user => {
         /* istanbul ignore next */
-        req.io.on("connection", socket => {
-          socket.emit("update user", user);
-        });
+        req.socket.broadcast.emit("new_invite", user);
         res.status(200).json(user);
       })
       .catch(err => {
@@ -60,22 +58,18 @@ class RoomController {
     )
       .then(user => {
         /* istanbul ignore next */
-        req.io.on("connection", socket => {
-          socket.emit("update user", user);
-        });
+        req.socket.broadcast.emit("accept_invite", user);
         return Room.findByIdAndUpdate(
           req.params.roomId,
           {
             $push: { userIds: ObjectID(req.params.userId) }
           },
           { new: true }
-        );
+        ).populate("userIds");
       })
       .then(room => {
         /* istanbul ignore next */
-        req.io.on("connection", socket => {
-          socket.emit("update room", room);
-        });
+        req.socket.broadcast.emit("new_person_enters", room);
         res.status(200).json(room);
       })
       .catch(err => {
@@ -104,10 +98,11 @@ class RoomController {
     let owned = "";
     let involved = "";
     Room.find({ roomOwner: req.currentUserId })
+      .populate("roomOwner")
       .sort("-createdAt")
       .then(result => {
         owned = result;
-        return Room.find({ userIds: req.currentUserId });
+        return Room.find({ userIds: req.currentUserId }).populate("roomOwner");
       })
       .then(rooms => {
         involved = rooms;
@@ -122,6 +117,7 @@ class RoomController {
   static getRoomDetail(req, res, next) {
     let room = {};
     Room.findById(req.params.id)
+      .populate("userIds")
       .then(data => {
         room.detail = data;
         return Track.find({ roomId: req.params.id });

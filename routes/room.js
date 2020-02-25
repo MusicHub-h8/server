@@ -1,4 +1,5 @@
 const express = require("express");
+const io = require("socket.io");
 const router = express.Router();
 const { RoomController } = require("../controllers/index");
 const { authentication, roomAuthorization } = require("../middlewares");

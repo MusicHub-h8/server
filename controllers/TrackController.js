@@ -10,10 +10,7 @@ class TrackController {
     })
       .then(result => {
         /* istanbul ignore next */
-        req.io.on("connection", socket => {
-          socket.emit("new track", result);
-        });
-        res.status(201).json(result);
+        req.socket.broadcast.emit("new_track", result);
       })
       .catch(err => {
         /* istanbul ignore next */
@@ -24,6 +21,8 @@ class TrackController {
   static delete(req, res, next) {
     Track.deleteOne({ _id: req.params.id })
       .then(_ => {
+        /* istanbul ignore next */
+        req.socket.broadcast.emit("delete_track", result);
         res.status(200).json({ message: "Delete Successful" });
       })
       .catch(err => {

@@ -124,7 +124,17 @@ class UserController {
     ];
 
     for (let i = 0; i < 20; i++) {
-      let instruments = ["Guitar", "Piano", "Violin", "Bass", "Drums", "Vocal"];
+      let instruments = [
+        "Guitar",
+        "Piano",
+        "Violin",
+        "Bass",
+        "Drums",
+        "Vocal",
+        "Keyboard",
+        "Acapella",
+        "Saxophone"
+      ];
       let randomName = faker.name.findName();
       let randomEmail = faker.internet.email();
       let randomImage = faker.image.avatar();

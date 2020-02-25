@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1582539689441" clover="3.2.0">
+  <project timestamp="1582539689441" name="All files">
+    <metrics statements="240" coveredstatements="223" conditionals="20" coveredconditionals="13" methods="72" coveredmethods="56" elements="332" coveredelements="292" complexity="0" loc="240" ncloc="240" packages="6" files="20" classes="20"/>
+    <package name="server">
+      <metrics statements="22" coveredstatements="22" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="app.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/app.js">
+        <metrics statements="22" coveredstatements="22" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="22" count="3" type="stmt"/>
+        <line num="23" count="3" type="stmt"/>
+        <line num="25" count="3" type="stmt"/>
+        <line num="26" count="22" type="stmt"/>
+        <line num="27" count="22" type="stmt"/>
+        <line num="30" count="3" type="stmt"/>
+        <line num="32" count="3" type="stmt"/>
+        <line num="34" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="server.controllers">
+      <metrics statements="76" coveredstatements="66" conditionals="4" coveredconditionals="3" methods="53" coveredmethods="39"/>
+      <file name="RoomController.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/controllers/RoomController.js">
+        <metrics statements="27" coveredstatements="27" conditionals="0" coveredconditionals="0" methods="24" coveredmethods="18"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="79" count="1" type="stmt"/>
+        <line num="88" count="1" type="stmt"/>
+        <line num="95" count="1" type="stmt"/>
+        <line num="104" count="1" type="stmt"/>
+        <line num="105" count="1" type="stmt"/>
+        <line num="106" count="1" type="stmt"/>
+        <line num="109" count="1" type="stmt"/>
+        <line num="110" count="1" type="stmt"/>
+        <line num="113" count="1" type="stmt"/>
+        <line num="114" count="1" type="stmt"/>
+        <line num="123" count="1" type="stmt"/>
+        <line num="124" count="1" type="stmt"/>
+        <line num="126" count="1" type="stmt"/>
+        <line num="127" count="1" type="stmt"/>
+        <line num="130" count="1" type="stmt"/>
+        <line num="131" count="1" type="stmt"/>
+        <line num="140" count="3" type="stmt"/>
+      </file>
+      <file name="TrackController.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/controllers/TrackController.js">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="5"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="36" count="3" type="stmt"/>
+      </file>
+      <file name="UserController.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/controllers/UserController.js">
+        <metrics statements="39" coveredstatements="29" conditionals="4" coveredconditionals="3" methods="23" coveredmethods="16"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="19" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="36" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="39" count="2" type="stmt"/>
+        <line num="47" count="2" type="stmt"/>
+        <line num="51" count="2" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="75" count="1" type="stmt"/>
+        <line num="77" count="1" type="stmt"/>
+        <line num="80" count="1" type="stmt"/>
+        <line num="81" count="2" type="stmt"/>
+        <line num="83" count="1" type="stmt"/>
+        <line num="92" count="1" type="stmt"/>
+        <line num="100" count="1" type="stmt"/>
+        <line num="109" count="0" type="stmt"/>
+        <line num="126" count="0" type="stmt"/>
+        <line num="127" count="0" type="stmt"/>
+        <line num="128" count="0" type="stmt"/>
+        <line num="129" count="0" type="stmt"/>
+        <line num="130" count="0" type="stmt"/>
+        <line num="131" count="0" type="stmt"/>
+        <line num="132" count="0" type="stmt"/>
+        <line num="134" count="0" type="stmt"/>
+        <line num="143" count="0" type="stmt"/>
+        <line num="149" count="1" type="stmt"/>
+        <line num="151" count="1" type="stmt"/>
+        <line num="153" count="7" type="stmt"/>
+        <line num="162" count="3" type="stmt"/>
+      </file>
+      <file name="index.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/controllers/index.js">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="server.helpers">
+      <metrics statements="19" coveredstatements="15" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="5"/>
+      <file name="genreCounter.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/helpers/genreCounter.js">
+        <metrics statements="19" coveredstatements="15" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="5"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="61" count="2" type="stmt"/>
+        <line num="62" count="2" type="stmt"/>
+        <line num="63" count="2" type="stmt"/>
+        <line num="64" count="2" type="stmt"/>
+        <line num="67" count="2" type="stmt"/>
+        <line num="68" count="28" type="stmt"/>
+        <line num="69" count="28" type="stmt"/>
+        <line num="70" count="28" type="cond" truecount="1" falsecount="1"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="76" count="2" type="stmt"/>
+        <line num="77" count="2" type="stmt"/>
+        <line num="78" count="28" type="stmt"/>
+        <line num="79" count="182" type="cond" truecount="1" falsecount="1"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+        <line num="86" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="server.middlewares">
+      <metrics statements="61" coveredstatements="58" conditionals="12" coveredconditionals="8" methods="13" coveredmethods="11"/>
+      <file name="authentication.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/middlewares/authentication.js">
+        <metrics statements="12" coveredstatements="11" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="2"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="19" type="stmt"/>
+        <line num="6" count="19" type="stmt"/>
+        <line num="7" count="19" type="stmt"/>
+        <line num="8" count="17" type="stmt"/>
+        <line num="12" count="17" type="cond" truecount="1" falsecount="1"/>
+        <line num="13" count="17" type="stmt"/>
+        <line num="14" count="17" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+      </file>
+      <file name="errorHandler.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/middlewares/errorHandler.js">
+        <metrics statements="10" coveredstatements="10" conditionals="4" coveredconditionals="3" methods="1" coveredmethods="1"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="11" count="3" type="stmt"/>
+      </file>
+      <file name="index.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/middlewares/index.js">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+      </file>
+      <file name="roomAuthorization.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/middlewares/roomAuthorization.js">
+        <metrics statements="8" coveredstatements="7" conditionals="4" coveredconditionals="3" methods="3" coveredmethods="2"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="6" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+      </file>
+      <file name="trackAuthorization.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/middlewares/trackAuthorization.js">
+        <metrics statements="6" coveredstatements="5" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="3"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="6" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="tracks.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/middlewares/tracks.js">
+        <metrics statements="19" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="27" count="2" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
+        <line num="40" count="2" type="stmt"/>
+        <line num="41" count="2" type="stmt"/>
+        <line num="42" count="2" type="stmt"/>
+        <line num="45" count="2" type="stmt"/>
+        <line num="48" count="3" type="stmt"/>
+        <line num="49" count="3" type="stmt"/>
+        <line num="57" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="server.models">
+      <metrics statements="19" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/models/index.js">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+      </file>
+      <file name="roomModel.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/models/roomModel.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+      </file>
+      <file name="trackModel.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/models/trackModel.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+      </file>
+      <file name="userModel.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/models/userModel.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="server.routes">
+      <metrics statements="43" coveredstatements="43" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/routes/index.js">
+        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+      </file>
+      <file name="room.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/routes/room.js">
+        <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+      </file>
+      <file name="track.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/routes/track.js">
+        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+      </file>
+      <file name="user.js" path="/home/vaniairnanda/Documents/H8tasks/final-project/server/routes/user.js">
+        <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

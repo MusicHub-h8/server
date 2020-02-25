@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+const server = require("../app");
+const port = process.env.PORT || 3000;
+
+server.listen(port, function() {
+  //   console.log("Dor");
+  console.log("Server is running on port " + port);
+});

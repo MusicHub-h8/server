@@ -35,7 +35,7 @@ class UserController {
                 let genre = genreCounter(result);
                 let image = data.images[0]
                   ? data.images[0].url
-                  : "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+                  : "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/d94682f8-fdc9-492d-86c4-844e5ba55c4e/d1hisi9-085f9f5e-9c01-49af-bb7e-33d8af59cba7.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Q5NDY4MmY4LWZkYzktNDkyZC04NmM0LTg0NGU1YmE1NWM0ZVwvZDFoaXNpOS0wODVmOWY1ZS05YzAxLTQ5YWYtYmI3ZS0zM2Q4YWY1OWNiYTcuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.1vE7epA7X2gKadNmh56v0m8_RZxkRE3sEqBAsbB2DDU";
                 return User.create({
                   display_name: data.display_name,
                   email: data.email,
@@ -61,7 +61,13 @@ class UserController {
 
   static getUserDetails(req, res, next) {
     User.findById(req.currentUserId)
-      .populate("pendingInvites")
+      .populate({
+        path: "pendingInvites",
+        populate: {
+          path: "roomOwner",
+          model: "User"
+        }
+      })
       .then(user => {
         res.status(200).json(user);
       })

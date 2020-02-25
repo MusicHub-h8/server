@@ -65,7 +65,9 @@ class RoomController {
             $push: { userIds: ObjectID(req.params.userId) }
           },
           { new: true }
-        ).populate("userIds");
+        )
+          .populate("userIds")
+          .populate("roomOwner");
       })
       .then(room => {
         /* istanbul ignore next */
@@ -118,6 +120,7 @@ class RoomController {
     let room = {};
     Room.findById(req.params.id)
       .populate("userIds")
+      .populate("roomOwner")
       .then(data => {
         room.detail = data;
         return Track.find({ roomId: req.params.id });

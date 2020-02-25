@@ -22,13 +22,14 @@ mongoose.connect("mongodb://localhost/musichub-" + process.env.NODE_ENV, {
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use(function(req, res, next) {
-  req.io = io;
-  next();
+io.on("connection", function(socket) {
+  app.use((req, res, next) => {
+    req.socket = socket;
+    next();
+  });
+  app.use("/", router);
+
+  app.use("/", errorHandler);
 });
-
-app.use("/", router);
-
-app.use("/", errorHandler);
 
 module.exports = server;

@@ -16,4 +16,5 @@ router.patch(
   RoomController.removeMember
 );
 router.delete("/:roomId", roomAuthorization, RoomController.delete);
+router.get("/export/:roomId", RoomController.exportTrack);
 module.exports = router;

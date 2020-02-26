@@ -1,5 +1,4 @@
 module.exports = function(err, req, res, next) {
-  console.log(err);
   const stringifiedErr = JSON.stringify(err);
   if (stringifiedErr.indexOf("ValidatorError") !== -1) {
     const mongooseErrors = err.errors;

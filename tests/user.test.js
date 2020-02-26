@@ -1,5 +1,5 @@
 const supertest = require("supertest");
-const app = require("../app");
+const app = require("../app_test");
 const request = supertest(app);
 const axios = require("axios");
 const { User } = require("../models");

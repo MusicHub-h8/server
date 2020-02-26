@@ -23,20 +23,21 @@ class TrackController {
         }
       });
       fs.unlinkSync(`${process.cwd()}/uploads/${filename}`);
-      console.log("Upload Success");
       const result = await Track.create({
         instrument: req.body.instrument,
         userId: req.currentUserId,
         roomId: req.params.roomId,
         file_path: `https://storage.googleapis.com/${bucketName}/${filename}`
       });
-      req.socket.broadcast.emit(
-        `new_track_upload_${req.params.roomId}`,
-        result
-      );
+      if (process.env.NODE_ENV !== "test") {
+        req.socket.broadcast.emit(
+          `new_track_upload_${req.params.roomId}`,
+          result
+        );
+      }
       res.status(201).json(result);
     } catch (err) {
-      console.log(err);
+      next(err);
     }
   }
 
@@ -44,7 +45,10 @@ class TrackController {
     Track.deleteOne({ _id: req.params.id })
       .then(_ => {
         /* istanbul ignore next */
-        req.socket.broadcast.emit("delete_track", result);
+        if (process.env.NODE_ENV !== "test") {
+          /* istanbul ignore next */
+          req.socket.broadcast.emit("delete_track", result);
+        }
         res.status(200).json({ message: "Delete Successful" });
       })
       .catch(err => {

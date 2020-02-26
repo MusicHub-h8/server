@@ -37,8 +37,13 @@ class RoomController {
       },
       { new: true }
     )
+      .populate("pendingInvites")
       .then(user => {
         /* istanbul ignore next */
+        console.log(user, "before");
+        const filteredInvites = new Set(user.pendingInvites);
+        console(filteredInvites, "after");
+        user.pendingInvites = filteredInvites;
         req.socket.broadcast.emit("new_invite", user);
         res.status(200).json(user);
       })

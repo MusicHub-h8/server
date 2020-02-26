@@ -111,6 +111,7 @@ class UserController {
       });
   }
 
+  /* istanbul ignore next */
   static generateDummies(req, res, next) {
     let genres = [
       "EDM",

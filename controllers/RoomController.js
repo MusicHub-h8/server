@@ -30,16 +30,21 @@ class RoomController {
   }
 
   static invite(req, res, next) {
+    User.findById(req.params.userId).then();
     User.findByIdAndUpdate(
       req.params.userId,
       {
-        $push: { pendingInvites: ObjectID(req.params.roomId) }
+        $addToSet: { pendingInvites: ObjectID(req.params.roomId) }
       },
       { new: true }
     )
+      .populate("pendingInvites")
       .then(user => {
         /* istanbul ignore next */
-        req.socket.broadcast.emit("new_invite", user);
+        if (process.env.NODE_ENV !== "test") {
+          /* istanbul ignore next */
+          req.socket.broadcast.emit("new_invite", user);
+        }
         res.status(200).json(user);
       })
       .catch(err => {
@@ -58,7 +63,10 @@ class RoomController {
     )
       .then(user => {
         /* istanbul ignore next */
-        req.socket.broadcast.emit("accept_invite", user);
+        if (process.env.NODE_ENV !== "test") {
+          /* istanbul ignore next */
+          req.socket.broadcast.emit("accept_invite", user);
+        }
         return Room.findByIdAndUpdate(
           req.params.roomId,
           {
@@ -71,7 +79,10 @@ class RoomController {
       })
       .then(room => {
         /* istanbul ignore next */
-        req.socket.broadcast.emit("new_person_enters", room);
+        if (process.env.NODE_ENV !== "test") {
+          /* istanbul ignore next */
+          req.socket.broadcast.emit("new_person_enters", room);
+        }
         res.status(200).json(room);
       })
       .catch(err => {

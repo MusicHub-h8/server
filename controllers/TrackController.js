@@ -43,7 +43,7 @@ class TrackController {
 
   static delete(req, res, next) {
     Track.deleteOne({ _id: req.params.id })
-      .then(_ => {
+      .then(result => {
         /* istanbul ignore next */
         if (process.env.NODE_ENV !== "test") {
           /* istanbul ignore next */

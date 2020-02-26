@@ -1,7 +1,8 @@
 const supertest = require("supertest");
-const app = require("../app");
+const app = require("../app_test");
 const request = supertest(app);
 const jwt = require("jsonwebtoken");
+const fs = require("fs");
 
 const { User, Track, Room } = require("../models");
 
@@ -30,11 +31,15 @@ beforeAll(async () => {
 
 describe("Track Operations", () => {
   test("Should return status 201 on uploading a new track, complete with the track details", async done => {
+    let file = fs.readFileSync("./tests/1901_bass.mp3", { encoding: "utf8" });
+    let base64 = file.toString("base64");
     try {
       const res = await request
         .post("/tracks/" + createdRoomId)
-        .field("instrument", "Bass")
-        .attach("track", "./tests/1901_bass.mp3")
+        .send({
+          instrument: "Bass",
+          track: base64
+        })
         .set("access_token", access_token);
       createdTrackId = res.body._id;
       expect(res.statusCode).toEqual(201);
@@ -82,12 +87,15 @@ describe("Error handler for Track", () => {
   });
 
   test("Should return status 400 on uploading a new track without Instrument label", async done => {
+    let file = fs.readFileSync("./tests/1901_bass.mp3", { encoding: "utf8" });
+    let base64 = file.toString("base64");
     try {
       const res = await request
         .post("/tracks/" + createdRoomId)
-        .attach("track", "./tests/1901_bass.mp3")
+        .send({
+          track: base64
+        })
         .set("access_token", access_token);
-      createdTrackId = res.body._id;
       expect(res.statusCode).toEqual(400);
       expect(res.body).toHaveProperty("errors");
       done();

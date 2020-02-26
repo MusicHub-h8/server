@@ -1,6 +1,6 @@
 require("dotenv").config();
 const supertest = require("supertest");
-const app = require("../app");
+const app = require("../app_test");
 const request = supertest(app);
 const { User, Room } = require("../models");
 const jwt = require("jsonwebtoken");
@@ -92,7 +92,7 @@ describe("Room Operations", () => {
       .patch(`/rooms/${createdRoomId}/invite/${idToInvite}`)
       .set("access_token", access_token);
     expect(res.statusCode).toEqual(200);
-    expect(res.body.userIds[0].toString()).toEqual(idToInvite.toString());
+    expect(res.body.userIds[0]._id.toString()).toEqual(idToInvite.toString());
     expect(res.body.userIds.length).not.toEqual(0);
     done();
   });

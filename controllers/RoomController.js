@@ -30,19 +30,19 @@ class RoomController {
   }
 
   static invite(req, res, next) {
+    User.findById(req.params.userId).then()
     User.findByIdAndUpdate(
       req.params.userId,
       {
-        $push: { pendingInvites: ObjectID(req.params.roomId) },
+        $addToSet: { pendingInvites: ObjectID(req.params.roomId) },
       },
       { new: true }
     )
       .populate('pendingInvites')
       .then((user) => {
         /* istanbul ignore next */
-        const filteredInvites = new Set(user.pendingInvites)
-        user.pendingInvites = Array.from(filteredInvites)
-        console.log(user)
+        // const filteredInvites = new Set(user.pendingInvites)
+        // user.pendingInvites = Array.from(filteredInvites)
         req.socket.broadcast.emit('new_invite', user)
         res.status(200).json(user)
       })

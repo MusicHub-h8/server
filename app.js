@@ -21,6 +21,7 @@ mongoose.connect("mongodb://localhost/musichub-" + process.env.NODE_ENV, {
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json({ limit: "50mb" }));
+app.use("/static", express.static(process.cwd() + "/downloadable"));
 
 io.on("connection", function(socket) {
   app.use((req, res, next) => {

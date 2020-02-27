@@ -1,10 +1,6 @@
 const { Room, User, Track } = require("../models/");
 const ObjectID = require("mongoose").Types.ObjectId;
 const { exec } = require("child_process");
-const filepath = "./downloadable/";
-const { Storage } = require("@google-cloud/storage");
-const storage = new Storage();
-const bucketName = process.env.CLOUD_BUCKET;
 
 class RoomController {
   static create(req, res, next) {
@@ -159,31 +155,18 @@ class RoomController {
           shellCommand += ` -i ${track.file_path}`;
         });
         let filename = `${Date.now()}-output.mp3`;
-        shellCommand += ` -filter_complex amix=inputs=2:duration=longest downloadable/${filename} && zip output.zip <input mp3>`;
+        shellCommand += ` -filter_complex amix=inputs=2:duration=longest downloadable/${filename}`;
         exec(shellCommand, async (error, stdout, stderr) => {
           if (error) {
             console.log(`error: ${error.message}`);
             return;
           }
           if (stderr) {
-            // ini upload ke storage
-            await storage.bucket(bucketName).upload(filepath + filename, {
-              gzip: true,
-              metadata: {
-                cacheControl: "public, max-age=31536000"
-              }
-            });
-            console.log(
-              `https://storage.googleapis.com/${bucketName}/${filename}`
-            );
             res.status(201).json({
-              file_path: `https://storage.googleapis.com/${bucketName}/${filename}`
+              file_path: filename
             });
-            // res.sendFile(`${process.cwd()}/output.mp3`);
             return;
           }
-          console.log(stdout);
-          console.log("masuk");
           // console.log(process.cwd());
         });
       })

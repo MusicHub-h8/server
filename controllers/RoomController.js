@@ -1,5 +1,6 @@
 const { Room, User, Track } = require("../models/");
 const ObjectID = require("mongoose").Types.ObjectId;
+const { exec } = require("child_process");
 
 class RoomController {
   static create(req, res, next) {
@@ -144,6 +145,32 @@ class RoomController {
         /* istanbul ignore next */
         next(err);
       });
+  }
+
+  static exportTrack(req, res, next) {
+    Track.find({ roomId: req.params.roomId })
+      .then(tracks => {
+        let shellCommand = "ffmpeg";
+        tracks.forEach(track => {
+          shellCommand += ` -i ${track.file_path}`;
+        });
+        let filename = `${Date.now()}-output.mp3`;
+        shellCommand += ` -filter_complex amix=inputs=2:duration=longest downloadable/${filename}`;
+        exec(shellCommand, async (error, stdout, stderr) => {
+          if (error) {
+            console.log(`error: ${error.message}`);
+            return;
+          }
+          if (stderr) {
+            res.status(201).json({
+              file_path: filename
+            });
+            return;
+          }
+          // console.log(process.cwd());
+        });
+      })
+      .catch(next);
   }
 }
 

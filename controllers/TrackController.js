@@ -7,7 +7,7 @@ const storage = new Storage();
 
 class TrackController {
   static async upload(req, res, next) {
-    let filename = `${req.body.instrument}-${new Date()}-${
+    let filename = `${req.body.instrument}-${Date.now()}-${
       req.currentUserId
     }.mp3`;
     try {

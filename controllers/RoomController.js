@@ -159,7 +159,7 @@ class RoomController {
           shellCommand += ` -i ${track.file_path}`;
         });
         let filename = `${Date.now()}-output.mp3`;
-        shellCommand += ` -filter_complex amix=inputs=2:duration=longest downloadable/${filename}`;
+        shellCommand += ` -filter_complex amix=inputs=2:duration=longest downloadable/${filename} && zip output.zip <input mp3>`;
         exec(shellCommand, async (error, stdout, stderr) => {
           if (error) {
             console.log(`error: ${error.message}`);

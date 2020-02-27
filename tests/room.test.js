@@ -78,7 +78,7 @@ describe("Room Operations", () => {
       .post(`/rooms/${createdRoomId}/invite/${idToInvite}`)
       .set("access_token", access_token);
     expect(res.statusCode).toEqual(200);
-    expect(res.body.pendingInvites[0].toString()).toEqual(
+    expect(res.body.pendingInvites[0]._id.toString()).toEqual(
       createdRoomId.toString()
     );
     expect(res.body.pendingInvites.length).not.toEqual(0);

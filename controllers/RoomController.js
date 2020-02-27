@@ -148,6 +148,7 @@ class RoomController {
   }
 
   static exportTrack(req, res, next) {
+    /* istanbul ignore next */
     Track.find({ roomId: req.params.roomId })
       .then(tracks => {
         let shellCommand = "ffmpeg";
